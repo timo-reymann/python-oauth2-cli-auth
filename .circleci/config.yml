@@ -1,0 +1,83 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@2.1.1
+  codecov: codecov/codecov@3.3.0
+  semantic-release: trustedshops-public/semantic-release@6.0.0
+
+jobs:
+  pip-publish:
+    executor: python/default
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: poetry
+      - run:
+          name: Publish package
+          command: |
+            if [ -z "$CIRCLE_TAG" ]
+            then
+              echo "Building for snapshot, replacing version with unique one"
+              last_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+              version="${last_tag}.dev${CIRCLE_BUILD_NUM}"
+              sed  -ri "s/version = \"(.*)\"/version = \"$version\"/" pyproject.toml
+
+              poetry publish \
+                --build \
+                --repository testpypi \
+                --username "$TWINE_USERNAME_TEST" \
+                --password "$TWINE_PASSWORD_TEST"
+            else
+              poetry publish \
+                --build \
+                --username "$TWINE_USERNAME_PROD" \
+                --password "$TWINE_PASSWORD_PROD"
+            fi
+
+  test:
+    executor: python/default
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: poetry
+      - run:
+          name: Run tests
+          command: |
+            poetry run coverage run -m pytest --junit-xml test-results/junit.xml
+            poetry run coverage report
+            poetry run coverage html
+            poetry run coverage xml -i
+      - store_artifacts:
+          path: htmlcov
+      - store_test_results:
+          path: test-results
+      - codecov/upload
+
+workflows:
+  continuous:
+    jobs:
+      - test
+      - pip-publish:
+          name: publish-testpypi
+          requires:
+            - test
+          filters:
+            branches:
+              only: main
+
+      - pip-publish:
+          name: publish-pypi
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.*/
+      - semantic-release/with_existing_config:
+          name: semantic-release
+          additional_packages: "@google/semantic-release-replace-plugin"
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - main
