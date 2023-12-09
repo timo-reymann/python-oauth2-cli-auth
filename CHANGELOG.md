@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.0.1...1.0.2) (2023-12-09)
+
+
+### Bug Fixes
+
+* Remove ansible category ([3b2b1dc](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/3b2b1dc65f231fe37794f3863844dfb4e42da4bd))
+
 ## [1.0.1](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.0.0...1.0.1) (2023-12-09)
 
 
