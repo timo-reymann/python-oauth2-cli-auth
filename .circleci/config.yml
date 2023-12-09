@@ -56,8 +56,7 @@ jobs:
       - run:
           name: Build html documentation
           command: |
-            sudo apt-get update
-            sudo apt-get install -y python3-distutils
+            rm **/*_test.py
             mkdir gh-pages
             poetry run pdoc3 oauth2_cli_auth -o gh-pages --html --force
             echo '<meta http-equiv="refresh" content="0; URL=https://timo-reymann.github.io/python-oauth2-cli-auth/oauth2_cli_auth">' > gh-pages/index.html
