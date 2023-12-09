@@ -12,7 +12,7 @@ oauth2-cli-auth
 [![pre-commit](https://img.shields.io/badge/%E2%9A%93%20%20pre--commit-enabled-success)](https://pre-commit.com/)
 
 <p align="center">
-	<img width="300" src="./.github/images/logo.png">
+	<img width="300" src="https://raw.githubusercontent.com/timo-reymann/python-oauth2-cli-auth/main/.github/images/logo.png">
     <br />
     Authenticate against OAuth2 Provider in Python CLIs
 </p>
