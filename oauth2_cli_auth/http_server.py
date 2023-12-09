@@ -152,20 +152,22 @@ class OAuthRedirectHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         params = parse_qs(urlparse(self.path).query)
-        self.send_response(200)
-        self.send_header("Content-type", "text/html")
-        self.end_headers()
+
 
         has_error = "code" not in params or len(params['code']) != 1 or params['code'][0].strip() == ""
 
         if has_error:
+            self.send_response(400)
             title = "Oh snap!"
             message = "Something went wrong trying to authenticate you. Please try going back in your browser, or restart the auth process."
         else:
+            self.send_response(200)
             self.server._code = params["code"][0]
             title = "Success"
             message = "You have been authenticated successfully. You may close this browser window now and go back to the terminal"
 
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
         self.wfile.write(
             self.callback_template
             .render(
