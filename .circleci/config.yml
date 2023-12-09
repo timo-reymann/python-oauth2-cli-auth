@@ -4,11 +4,15 @@ orbs:
   python: circleci/python@2.1.1
   codecov: codecov/codecov@3.3.0
   semantic-release: trustedshops-public/semantic-release@6.0.0
+  github-utils: trustedshops-public/github-utils@1.1.2
 
 executors:
   python:
     docker:
       - image: cimg/python:3.12
+  node:
+    docker:
+      - image: cimg/python:3.12-node
 
 jobs:
   pip-publish:
@@ -44,11 +48,33 @@ jobs:
       - store_test_results:
           path: test-results
       - codecov/upload
+  build-gh-pages:
+    executor: node
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: poetry
+      - run:
+          name: Build html documentation
+          command: |
+            mkdir gh-pages
+            poetry run pdoc3 oauth2_cli_auth -o gh-pages --html --force
+            echo '<meta http-equiv="refresh" content="0; URL=https://timo-reymann.github.io/python-oauth2-cli-auth/oauth2-cli-auth">' > gh-pages/index.html
+
+      - github-utils/publish_github_pages:
+          folder: gh-pages/
+          git_commit_author_email: "no-reply@timo-reymann.de"
+          git_commit_author_name: "CircleCI"
 
 workflows:
   continuous:
     jobs:
       - test
+      - build-gh-pages:
+          filters:
+            branches:
+              only:
+                - main
       - pip-publish:
           name: publish-pypi
           filters:
