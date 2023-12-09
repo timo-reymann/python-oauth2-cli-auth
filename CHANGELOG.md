@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.0.2...1.1.0) (2023-12-09)
+
+
+### Features
+
+* Add OIDC support ([e6ad38c](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/e6ad38cc571fa9e0b57e73b81bd4771e71cd95c6))
+
 ## [1.0.2](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.0.1...1.0.2) (2023-12-09)
 
 
