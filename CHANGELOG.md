@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.0.0...1.0.1) (2023-12-09)
+
+
+### Bug Fixes
+
+* Fix publish, improve docs ([85f102e](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/85f102eb47f93ace85a17c24f23a0d6ddf16ebcb))
+
 ## 1.0.0 (2023-12-09)
 
 
