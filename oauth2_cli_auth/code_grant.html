@@ -48,6 +48,28 @@ class OAuth2ClientInfo:
     scopes: list[str]
     &#34;&#34;&#34;List of scopes to request&#34;&#34;&#34;
 
+    @staticmethod
+    def from_oidc_endpoint(oidc_config_endpoint: str, client_id: str, scopes: list[str]):
+        config = load_oidc_config(oidc_config_endpoint)
+        return OAuth2ClientInfo(
+            authorization_url=config.get(&#34;authorization_endpoint&#34;),
+            token_url=config.get(&#34;token_endpoint&#34;),
+            client_id=client_id,
+            scopes=scopes,
+        )
+
+
+def _load_json(url_or_request: str | urllib.request.Request) -&gt; dict:
+    with urllib.request.urlopen(url_or_request) as response:
+        response_data = response.read().decode(&#39;utf-8&#39;)
+        json_response = json.loads(response_data)
+    return json_response
+
+
+def load_oidc_config(odic_well_known_endpoint: str) -&gt; dict:
+    config = _load_json(odic_well_known_endpoint)
+    return config
+
 
 def open_browser(url: str) -&gt; None:
     &#34;&#34;&#34;
@@ -99,13 +121,9 @@ def exchange_code_for_access_token(client_info: OAuth2ClientInfo, redirect_uri: 
     encoded_data = urllib.parse.urlencode(data).encode(&#39;utf-8&#39;)
 
     request = urllib.request.Request(client_info.token_url, data=encoded_data, headers=headers)
-    with urllib.request.urlopen(request) as response:
-        response_data = response.read().decode(&#39;utf-8&#39;)
-        json_response = json.loads(response_data)
+    json_response = _load_json(request)
 
-        access_token = json_response.get(access_token_field)
-
-    return access_token</code></pre>
+    return json_response.get(access_token_field)</code></pre>
 </details>
 </section>
 <section>
@@ -155,13 +173,9 @@ the provider you are using. For example for Auth0 you have to set this to id_tok
     encoded_data = urllib.parse.urlencode(data).encode(&#39;utf-8&#39;)
 
     request = urllib.request.Request(client_info.token_url, data=encoded_data, headers=headers)
-    with urllib.request.urlopen(request) as response:
-        response_data = response.read().decode(&#39;utf-8&#39;)
-        json_response = json.loads(response_data)
+    json_response = _load_json(request)
 
-        access_token = json_response.get(access_token_field)
-
-    return access_token</code></pre>
+    return json_response.get(access_token_field)</code></pre>
 </details>
 </dd>
 <dt id="oauth2_cli_auth.code_grant.get_auth_url"><code class="name flex">
@@ -189,6 +203,20 @@ the provider you are using. For example for Auth0 you have to set this to id_tok
             f&#34;&amp;redirect_uri={redirect_uri}&#34;
             f&#34;&amp;scope={&#39; &#39;.join(client_info.scopes)}&#34;
             f&#34;&amp;response_type=code&#34;)</code></pre>
+</details>
+</dd>
+<dt id="oauth2_cli_auth.code_grant.load_oidc_config"><code class="name flex">
+<span>def <span class="ident">load_oidc_config</span></span>(<span>odic_well_known_endpoint: str) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_oidc_config(odic_well_known_endpoint: str) -&gt; dict:
+    config = _load_json(odic_well_known_endpoint)
+    return config</code></pre>
 </details>
 </dd>
 <dt id="oauth2_cli_auth.code_grant.open_browser"><code class="name flex">
@@ -239,7 +267,17 @@ class OAuth2ClientInfo:
     client_id: str
     &#34;&#34;&#34;Id of the client to request for&#34;&#34;&#34;
     scopes: list[str]
-    &#34;&#34;&#34;List of scopes to request&#34;&#34;&#34;</code></pre>
+    &#34;&#34;&#34;List of scopes to request&#34;&#34;&#34;
+
+    @staticmethod
+    def from_oidc_endpoint(oidc_config_endpoint: str, client_id: str, scopes: list[str]):
+        config = load_oidc_config(oidc_config_endpoint)
+        return OAuth2ClientInfo(
+            authorization_url=config.get(&#34;authorization_endpoint&#34;),
+            token_url=config.get(&#34;token_endpoint&#34;),
+            client_id=client_id,
+            scopes=scopes,
+        )</code></pre>
 </details>
 <h3>Class variables</h3>
 <dl>
@@ -258,6 +296,29 @@ class OAuth2ClientInfo:
 <dt id="oauth2_cli_auth.code_grant.OAuth2ClientInfo.token_url"><code class="name">var <span class="ident">token_url</span> : str</code></dt>
 <dd>
 <div class="desc"><p>Token URL for fetching the access token</p></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="oauth2_cli_auth.code_grant.OAuth2ClientInfo.from_oidc_endpoint"><code class="name flex">
+<span>def <span class="ident">from_oidc_endpoint</span></span>(<span>oidc_config_endpoint: str, client_id: str, scopes: list[str])</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def from_oidc_endpoint(oidc_config_endpoint: str, client_id: str, scopes: list[str]):
+    config = load_oidc_config(oidc_config_endpoint)
+    return OAuth2ClientInfo(
+        authorization_url=config.get(&#34;authorization_endpoint&#34;),
+        token_url=config.get(&#34;token_endpoint&#34;),
+        client_id=client_id,
+        scopes=scopes,
+    )</code></pre>
+</details>
 </dd>
 </dl>
 </dd>
@@ -279,6 +340,7 @@ class OAuth2ClientInfo:
 <ul class="">
 <li><code><a title="oauth2_cli_auth.code_grant.exchange_code_for_access_token" href="#oauth2_cli_auth.code_grant.exchange_code_for_access_token">exchange_code_for_access_token</a></code></li>
 <li><code><a title="oauth2_cli_auth.code_grant.get_auth_url" href="#oauth2_cli_auth.code_grant.get_auth_url">get_auth_url</a></code></li>
+<li><code><a title="oauth2_cli_auth.code_grant.load_oidc_config" href="#oauth2_cli_auth.code_grant.load_oidc_config">load_oidc_config</a></code></li>
 <li><code><a title="oauth2_cli_auth.code_grant.open_browser" href="#oauth2_cli_auth.code_grant.open_browser">open_browser</a></code></li>
 </ul>
 </li>
@@ -289,6 +351,7 @@ class OAuth2ClientInfo:
 <ul class="">
 <li><code><a title="oauth2_cli_auth.code_grant.OAuth2ClientInfo.authorization_url" href="#oauth2_cli_auth.code_grant.OAuth2ClientInfo.authorization_url">authorization_url</a></code></li>
 <li><code><a title="oauth2_cli_auth.code_grant.OAuth2ClientInfo.client_id" href="#oauth2_cli_auth.code_grant.OAuth2ClientInfo.client_id">client_id</a></code></li>
+<li><code><a title="oauth2_cli_auth.code_grant.OAuth2ClientInfo.from_oidc_endpoint" href="#oauth2_cli_auth.code_grant.OAuth2ClientInfo.from_oidc_endpoint">from_oidc_endpoint</a></code></li>
 <li><code><a title="oauth2_cli_auth.code_grant.OAuth2ClientInfo.scopes" href="#oauth2_cli_auth.code_grant.OAuth2ClientInfo.scopes">scopes</a></code></li>
 <li><code><a title="oauth2_cli_auth.code_grant.OAuth2ClientInfo.token_url" href="#oauth2_cli_auth.code_grant.OAuth2ClientInfo.token_url">token_url</a></code></li>
 </ul>
