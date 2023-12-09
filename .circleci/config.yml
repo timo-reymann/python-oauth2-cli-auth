@@ -5,9 +5,14 @@ orbs:
   codecov: codecov/codecov@3.3.0
   semantic-release: trustedshops-public/semantic-release@6.0.0
 
+executors:
+  python:
+    docker:
+      - image: cimg/python:3.12
+
 jobs:
   pip-publish:
-    executor: python/default
+    executor: python
     steps:
       - checkout
       - python/install-packages:
@@ -22,7 +27,7 @@ jobs:
                 --password "$TWINE_PASSWORD"
 
   test:
-    executor: python/default
+    executor: python
     steps:
       - checkout
       - python/install-packages:
