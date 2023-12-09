@@ -16,8 +16,7 @@ classifiers = [
     "Environment :: Console",
     "Environment :: MacOS X",
     "Operating System :: POSIX",
-    "Operating System :: Unix",
-    "Framework :: Ansible"
+    "Operating System :: Unix"
 ]
 exclude = [
     "**/*_test.py",
