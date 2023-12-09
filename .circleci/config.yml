@@ -9,10 +9,10 @@ orbs:
 executors:
   python:
     docker:
-      - image: cimg/python:3.12
+      - image: cimg/python:3.10
   node:
     docker:
-      - image: cimg/python:3.12-node
+      - image: cimg/python:3.10-node
 
 jobs:
   pip-publish:
@@ -57,9 +57,11 @@ jobs:
       - run:
           name: Build html documentation
           command: |
+            sudo apt-get update
+            sudo apt-get install -y python3-distutils
             mkdir gh-pages
             poetry run pdoc3 oauth2_cli_auth -o gh-pages --html --force
-            echo '<meta http-equiv="refresh" content="0; URL=https://timo-reymann.github.io/python-oauth2-cli-auth/oauth2-cli-auth">' > gh-pages/index.html
+            echo '<meta http-equiv="refresh" content="0; URL=https://timo-reymann.github.io/python-oauth2-cli-auth/oauth2_cli_auth">' > gh-pages/index.html
 
       - github-utils/publish_github_pages:
           folder: gh-pages/
