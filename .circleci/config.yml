@@ -26,7 +26,6 @@ jobs:
           command: |
               poetry publish \
                 --build \
-                --repository pypi \
                 --username "$TWINE_USERNAME" \
                 --password "$TWINE_PASSWORD"
 

@@ -34,7 +34,26 @@ pip install oauth2-cli-auth
 
 ## Usage
 
-See [example.py](example.py)
+### Simple
+
+The following should work for 90% of all use cases, for rest please check the lib docs.
+
+```python
+from oauth2_cli_auth import get_access_token_with_browser_open, OAuth2ClientInfo
+
+client_info = OAuth2ClientInfo(
+    client_id="<clientId>",
+    authorization_url="<authorizeUrl>",
+    token_url="<TokenUrl>",
+    scopes=["scopeA", "scopeB"]
+)
+
+try:
+    token = get_access_token_with_browser_open(client_info)
+    print(f"Obtained token '{token}'")
+except ValueError:
+    print("Failed to obtain token")
+```
 
 ## Motivation
 
@@ -45,7 +64,7 @@ So I created this small library without any dependencies besides the python stan
 
 ## Documentation
 
-> TBD
+- [Library documentation](https://timo-reymann.github.io/python-oauth2-cli-auth/oauth2_cli_auth/)
 
 ## Contributing
 
@@ -69,7 +88,9 @@ To get started please read the [Contribution Guidelines](./CONTRIBUTING.md).
 
 ### Test
 
-> TBD
+```
+poetry run pytest .
+```
 
 ### Build
 
