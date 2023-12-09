@@ -35,9 +35,29 @@ pip install oauth2-cli-auth
 
 ## Usage
 
-### Simple
+### Simple with OIDC well known configuration endpoint
 
-The following should work for 90% of all use cases, for rest please check the lib docs.
+This should work for every provider supporting OIDC e.g. `gitlab.com`:
+
+```python
+from oauth2_cli_auth import get_access_token_with_browser_open, OAuth2ClientInfo
+
+client_info = OAuth2ClientInfo.from_oidc_endpoint(
+    "https://gitlab.com/.well-known/openid-configuration",
+    client_id="my-client-id",
+    scopes=["openid"]
+)
+
+try:
+    token = get_access_token_with_browser_open(client_info)
+    print(f"Obtained token '{token}'")
+except ValueError:
+    print("Failed to obtain token")
+```
+
+### Simple with manual endpoint specification
+
+The following should work for almost all use cases, for rest please check the lib docs.
 
 ```python
 from oauth2_cli_auth import get_access_token_with_browser_open, OAuth2ClientInfo

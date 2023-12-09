@@ -2,7 +2,7 @@ import io
 import urllib
 from unittest.mock import patch
 
-from oauth2_cli_auth import OAuth2ClientInfo, get_auth_url, exchange_code_for_access_token
+from oauth2_cli_auth import OAuth2ClientInfo, get_auth_url, exchange_code_for_access_token, load_oidc_config
 
 client_info = OAuth2ClientInfo(
     client_id="dummy",
@@ -21,6 +21,31 @@ def test_get_auth_url():
 
 
 def test_exchange_code_for_access_token():
-    data = io.BytesIO(b'{"access_token": "the_token"}')
-    with patch.object(urllib.request, 'urlopen', return_value=data):
+    with patch.object(urllib.request, 'urlopen', return_value=io.BytesIO(b'{"access_token": "the_token"}')):
         assert "the_token" == exchange_code_for_access_token(client_info, "http://localhost:123", "code")
+
+
+def test_load_oidc_config():
+    with patch.object(urllib.request, 'urlopen', return_value=io.BytesIO(b'{'
+                                                                         b'"token_endpoint": "https://gitlab.com/oauth/token",'
+                                                                         b'"authorization_endpoint": "https://gitlab.com/oauth/authorize"'
+                                                                         b'}')):
+        oidc_config = load_oidc_config("https://gitlab.com/.well-known/openid-configuration")
+        assert "https://gitlab.com/oauth/token" == oidc_config.get("token_endpoint")
+        assert "https://gitlab.com/oauth/authorize" == oidc_config.get("authorization_endpoint")
+
+
+def test_client_info_from_oidc_endpoint():
+    with patch.object(urllib.request, 'urlopen', return_value=io.BytesIO(b'{'
+                                                                         b'"token_endpoint": "https://gitlab.com/oauth/token",'
+                                                                         b'"authorization_endpoint": "https://gitlab.com/oauth/authorize"'
+                                                                         b'}')):
+        client_info = OAuth2ClientInfo.from_oidc_endpoint(
+            "https://gitlab.com/.well-known/openid-configuration",
+            client_id="test-client",
+            scopes=["openid"]
+        )
+        assert "test-client" == client_info.client_id
+        assert ["openid"] == client_info.scopes
+        assert "https://gitlab.com/oauth/token" == client_info.token_url
+        assert "https://gitlab.com/oauth/authorize" == client_info.authorization_url

@@ -43,7 +43,7 @@ coverage = "^7.3.2"
 pdoc3 = "^0.10.0"
 
 [tool.coverage.run]
-omit = [".*", "*/site-packages/*", "*_test"]
+omit = [".*", "*/site-packages/*", "*/*_test.py"]
 
 [tool.coverage.report]
 fail_under = 70

@@ -20,6 +20,28 @@ class OAuth2ClientInfo:
     scopes: list[str]
     """List of scopes to request"""
 
+    @staticmethod
+    def from_oidc_endpoint(oidc_config_endpoint: str, client_id: str, scopes: list[str]):
+        config = load_oidc_config(oidc_config_endpoint)
+        return OAuth2ClientInfo(
+            authorization_url=config.get("authorization_endpoint"),
+            token_url=config.get("token_endpoint"),
+            client_id=client_id,
+            scopes=scopes,
+        )
+
+
+def _load_json(url_or_request: str | urllib.request.Request) -> dict:
+    with urllib.request.urlopen(url_or_request) as response:
+        response_data = response.read().decode('utf-8')
+        json_response = json.loads(response_data)
+    return json_response
+
+
+def load_oidc_config(odic_well_known_endpoint: str) -> dict:
+    config = _load_json(odic_well_known_endpoint)
+    return config
+
 
 def open_browser(url: str) -> None:
     """
@@ -71,10 +93,6 @@ def exchange_code_for_access_token(client_info: OAuth2ClientInfo, redirect_uri: 
     encoded_data = urllib.parse.urlencode(data).encode('utf-8')
 
     request = urllib.request.Request(client_info.token_url, data=encoded_data, headers=headers)
-    with urllib.request.urlopen(request) as response:
-        response_data = response.read().decode('utf-8')
-        json_response = json.loads(response_data)
+    json_response = _load_json(request)
 
-        access_token = json_response.get(access_token_field)
-
-    return access_token
+    return json_response.get(access_token_field)
