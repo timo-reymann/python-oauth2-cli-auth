@@ -1,6 +1,7 @@
 import json
 import time
 import urllib
+from urllib.error import URLError
 
 
 def _urlopen_with_backoff(url, max_retries=3, base_delay=1, timeout=15):
@@ -15,7 +16,7 @@ def _urlopen_with_backoff(url, max_retries=3, base_delay=1, timeout=15):
             delay = base_delay * (2 ** retries)
             time.sleep(delay)
 
-    raise Exception(f"Failed to open URL after {max_retries} retries")
+    raise URLError(f"Failed to open URL after {max_retries} retries")
 
 
 def _load_json(url_or_request: str | urllib.request.Request) -> dict:

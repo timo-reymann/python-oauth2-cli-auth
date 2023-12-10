@@ -16,7 +16,7 @@ def _method_with_timeout(your_method, timeout_seconds=5, *args, **kwargs):
     try:
         result = your_method(*args, **kwargs)
     except TimeoutException as te:
-       raise te
+        raise te
     finally:
         signal.alarm(0)  # Reset the alarm
 

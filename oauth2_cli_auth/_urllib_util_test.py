@@ -14,7 +14,7 @@ def test_urlopen_with_backoff(create_urlopen_mock):
 
 
 def test_load_json(create_urlopen_mock):
-    with create_urlopen_mock(io.BytesIO(b'{"a":"b"}')) as urllib_open:
+    with create_urlopen_mock(io.BytesIO(b'{"a":"b"}')):
         content = _load_json("https://example.com")
         assert 'a' in content
         assert 'b' == content.get("a")
