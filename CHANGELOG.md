@@ -1,3 +1,12 @@
+## [1.2.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.1.0...1.2.0) (2023-12-10)
+
+
+### Features
+
+* Add timeout and retries for OAuth2 requests ([20d6000](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/20d6000d7c14b970ac43e4b1403dc131130bacf8))
+* Add timeout for OAuthCallbackHttpServer[#wait](https://github.com/timo-reymann/python-oauth2-cli-auth/issues/wait)_for_code to prevent CLI hangs ([603ce83](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/603ce832c11a6c7b1990b6e4af0a72df8be6f56b))
+* Supress log messages from http handler ([2ceb3dc](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/2ceb3dcd6d2beba3c2986ac6bf4e21538558d513))
+
 ## [1.1.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.0.2...1.1.0) (2023-12-09)
 
 
