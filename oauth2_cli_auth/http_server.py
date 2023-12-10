@@ -2,6 +2,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from string import Template
 from typing import Optional
 from urllib.parse import parse_qs, urlparse
+from oauth2_cli_auth._timeout import _method_with_timeout, TimeoutException
 
 
 class CallbackPageTemplate:
@@ -153,7 +154,6 @@ class OAuthRedirectHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         params = parse_qs(urlparse(self.path).query)
 
-
         has_error = "code" not in params or len(params['code']) != 1 or params['code'][0].strip() == ""
 
         if has_error:
@@ -197,9 +197,22 @@ class OAuthCallbackHttpServer(HTTPServer):
     def callback_url(self):
         return f"http://localhost:{self.server_port}"
 
-    def wait_for_code(self, attempts: int = 3) -> Optional[int]:
+    def wait_for_code(self, attempts: int = 3, timeout_per_attempt=10) -> Optional[int]:
+        """
+        Wait for the server to open the callback page containing the code query parameter.
+
+        It tries for #attempts with a timeout of #timeout_per_attempts for each attempt.
+        This prevents the CLI from getting stuck by unsolved callback URls
+
+        :param attempts: Amount of attempts
+        :param timeout_per_attempt: Timeout for each attempt to be successful
+        :return: Code from callback page or None if the callback page is not called successfully
+        """
         for i in range(0, attempts):
-            self.handle_request()
+            try:
+                _method_with_timeout(self.handle_request, timeout_seconds=timeout_per_attempt)
+            except TimeoutException:
+                continue
             if self.get_code() is not None:
                 return self.get_code()
 

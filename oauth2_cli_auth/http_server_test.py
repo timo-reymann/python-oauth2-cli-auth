@@ -13,6 +13,7 @@ def test_http_server_ok():
     threading.Thread(target=server.handle_request).start()
     with urllib.request.urlopen("http://localhost:5000?code=foo") as response:
         content = response.read().decode("utf-8")
+        assert content is not None
 
 
 def test_http_server_bad_request():
