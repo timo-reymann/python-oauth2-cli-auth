@@ -151,6 +151,10 @@ class CallbackPageTemplate:
 class OAuthRedirectHandler(BaseHTTPRequestHandler):
     callback_template = CallbackPageTemplate()
 
+    def log_message(self, format, *args):
+        # silence the log messages
+        pass
+
     def do_GET(self):
         params = parse_qs(urlparse(self.path).query)
 
