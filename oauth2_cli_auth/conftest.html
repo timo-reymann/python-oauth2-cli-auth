@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>oauth2_cli_auth API documentation</title>
-<meta name="description" content="Authenticate against OAuth2 Provider in Python CLIs" />
+<title>oauth2_cli_auth.conftest API documentation</title>
+<meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -19,47 +19,52 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Package <code>oauth2_cli_auth</code></h1>
+<h1 class="title">Module <code>oauth2_cli_auth.conftest</code></h1>
 </header>
 <section id="section-intro">
-<p>Authenticate against OAuth2 Provider in Python CLIs</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">&#34;&#34;&#34;
-Authenticate against OAuth2 Provider in Python CLIs
-&#34;&#34;&#34;
+<pre><code class="python">import urllib
+from unittest.mock import patch
 
-from oauth2_cli_auth.http_server import OAuthCallbackHttpServer
-from oauth2_cli_auth.code_grant import OAuth2ClientInfo, exchange_code_for_access_token, get_auth_url, open_browser, load_oidc_config
-from oauth2_cli_auth.simplified_flow import get_access_token_with_browser_open</code></pre>
+import pytest
+
+
+@pytest.fixture
+def create_urlopen_mock():
+    def mock(buffer):
+        return patch.object(urllib.request, &#39;urlopen&#39;, return_value=buffer)
+
+    return mock</code></pre>
 </details>
 </section>
 <section>
-<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt><code class="name"><a title="oauth2_cli_auth.code_grant" href="code_grant.html">oauth2_cli_auth.code_grant</a></code></dt>
+<dt id="oauth2_cli_auth.conftest.create_urlopen_mock"><code class="name flex">
+<span>def <span class="ident">create_urlopen_mock</span></span>(<span>)</span>
+</code></dt>
 <dd>
 <div class="desc"></div>
-</dd>
-<dt><code class="name"><a title="oauth2_cli_auth.conftest" href="conftest.html">oauth2_cli_auth.conftest</a></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt><code class="name"><a title="oauth2_cli_auth.http_server" href="http_server.html">oauth2_cli_auth.http_server</a></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt><code class="name"><a title="oauth2_cli_auth.simplified_flow" href="simplified_flow.html">oauth2_cli_auth.simplified_flow</a></code></dt>
-<dd>
-<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@pytest.fixture
+def create_urlopen_mock():
+    def mock(buffer):
+        return patch.object(urllib.request, &#39;urlopen&#39;, return_value=buffer)
+
+    return mock</code></pre>
+</details>
 </dd>
 </dl>
-</section>
-<section>
-</section>
-<section>
 </section>
 <section>
 </section>
@@ -70,12 +75,14 @@ from oauth2_cli_auth.simplified_flow import get_access_token_with_browser_open</
 <ul></ul>
 </div>
 <ul id="index">
-<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<li><h3>Super-module</h3>
 <ul>
-<li><code><a title="oauth2_cli_auth.code_grant" href="code_grant.html">oauth2_cli_auth.code_grant</a></code></li>
-<li><code><a title="oauth2_cli_auth.conftest" href="conftest.html">oauth2_cli_auth.conftest</a></code></li>
-<li><code><a title="oauth2_cli_auth.http_server" href="http_server.html">oauth2_cli_auth.http_server</a></code></li>
-<li><code><a title="oauth2_cli_auth.simplified_flow" href="simplified_flow.html">oauth2_cli_auth.simplified_flow</a></code></li>
+<li><code><a title="oauth2_cli_auth" href="index.html">oauth2_cli_auth</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="oauth2_cli_auth.conftest.create_urlopen_mock" href="#oauth2_cli_auth.conftest.create_urlopen_mock">create_urlopen_mock</a></code></li>
 </ul>
 </li>
 </ul>

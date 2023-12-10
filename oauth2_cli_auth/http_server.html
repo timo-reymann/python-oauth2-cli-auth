@@ -30,6 +30,7 @@
 from string import Template
 from typing import Optional
 from urllib.parse import parse_qs, urlparse
+from oauth2_cli_auth._timeout import _method_with_timeout, TimeoutException
 
 
 class CallbackPageTemplate:
@@ -178,9 +179,12 @@ class CallbackPageTemplate:
 class OAuthRedirectHandler(BaseHTTPRequestHandler):
     callback_template = CallbackPageTemplate()
 
+    def log_message(self, format, *args):
+        # silence the log messages
+        pass
+
     def do_GET(self):
         params = parse_qs(urlparse(self.path).query)
-
 
         has_error = &#34;code&#34; not in params or len(params[&#39;code&#39;]) != 1 or params[&#39;code&#39;][0].strip() == &#34;&#34;
 
@@ -225,9 +229,22 @@ class OAuthCallbackHttpServer(HTTPServer):
     def callback_url(self):
         return f&#34;http://localhost:{self.server_port}&#34;
 
-    def wait_for_code(self, attempts: int = 3) -&gt; Optional[int]:
+    def wait_for_code(self, attempts: int = 3, timeout_per_attempt=10) -&gt; Optional[int]:
+        &#34;&#34;&#34;
+        Wait for the server to open the callback page containing the code query parameter.
+
+        It tries for #attempts with a timeout of #timeout_per_attempts for each attempt.
+        This prevents the CLI from getting stuck by unsolved callback URls
+
+        :param attempts: Amount of attempts
+        :param timeout_per_attempt: Timeout for each attempt to be successful
+        :return: Code from callback page or None if the callback page is not called successfully
+        &#34;&#34;&#34;
         for i in range(0, attempts):
-            self.handle_request()
+            try:
+                _method_with_timeout(self.handle_request, timeout_seconds=timeout_per_attempt)
+            except TimeoutException:
+                continue
             if self.get_code() is not None:
                 return self.get_code()
 
@@ -460,9 +477,22 @@ May be extended, do not override.</p></div>
     def callback_url(self):
         return f&#34;http://localhost:{self.server_port}&#34;
 
-    def wait_for_code(self, attempts: int = 3) -&gt; Optional[int]:
+    def wait_for_code(self, attempts: int = 3, timeout_per_attempt=10) -&gt; Optional[int]:
+        &#34;&#34;&#34;
+        Wait for the server to open the callback page containing the code query parameter.
+
+        It tries for #attempts with a timeout of #timeout_per_attempts for each attempt.
+        This prevents the CLI from getting stuck by unsolved callback URls
+
+        :param attempts: Amount of attempts
+        :param timeout_per_attempt: Timeout for each attempt to be successful
+        :return: Code from callback page or None if the callback page is not called successfully
+        &#34;&#34;&#34;
         for i in range(0, attempts):
-            self.handle_request()
+            try:
+                _method_with_timeout(self.handle_request, timeout_seconds=timeout_per_attempt)
+            except TimeoutException:
+                continue
             if self.get_code() is not None:
                 return self.get_code()
 
@@ -505,17 +535,35 @@ def callback_url(self):
 </details>
 </dd>
 <dt id="oauth2_cli_auth.http_server.OAuthCallbackHttpServer.wait_for_code"><code class="name flex">
-<span>def <span class="ident">wait_for_code</span></span>(<span>self, attempts: int = 3) ‑> Optional[int]</span>
+<span>def <span class="ident">wait_for_code</span></span>(<span>self, attempts: int = 3, timeout_per_attempt=10) ‑> Optional[int]</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Wait for the server to open the callback page containing the code query parameter.</p>
+<p>It tries for #attempts with a timeout of #timeout_per_attempts for each attempt.
+This prevents the CLI from getting stuck by unsolved callback URls</p>
+<p>:param attempts: Amount of attempts
+:param timeout_per_attempt: Timeout for each attempt to be successful
+:return: Code from callback page or None if the callback page is not called successfully</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def wait_for_code(self, attempts: int = 3) -&gt; Optional[int]:
+<pre><code class="python">def wait_for_code(self, attempts: int = 3, timeout_per_attempt=10) -&gt; Optional[int]:
+    &#34;&#34;&#34;
+    Wait for the server to open the callback page containing the code query parameter.
+
+    It tries for #attempts with a timeout of #timeout_per_attempts for each attempt.
+    This prevents the CLI from getting stuck by unsolved callback URls
+
+    :param attempts: Amount of attempts
+    :param timeout_per_attempt: Timeout for each attempt to be successful
+    :return: Code from callback page or None if the callback page is not called successfully
+    &#34;&#34;&#34;
     for i in range(0, attempts):
-        self.handle_request()
+        try:
+            _method_with_timeout(self.handle_request, timeout_seconds=timeout_per_attempt)
+        except TimeoutException:
+            continue
         if self.get_code() is not None:
             return self.get_code()
 
@@ -627,9 +675,12 @@ e.g. "text/html" or "text/plain".</p></div>
 <pre><code class="python">class OAuthRedirectHandler(BaseHTTPRequestHandler):
     callback_template = CallbackPageTemplate()
 
+    def log_message(self, format, *args):
+        # silence the log messages
+        pass
+
     def do_GET(self):
         params = parse_qs(urlparse(self.path).query)
-
 
         has_error = &#34;code&#34; not in params or len(params[&#39;code&#39;]) != 1 or params[&#39;code&#39;][0].strip() == &#34;&#34;
 
@@ -683,7 +734,6 @@ e.g. "text/html" or "text/plain".</p></div>
 <pre><code class="python">def do_GET(self):
     params = parse_qs(urlparse(self.path).query)
 
-
     has_error = &#34;code&#34; not in params or len(params[&#39;code&#39;]) != 1 or params[&#39;code&#39;][0].strip() == &#34;&#34;
 
     if has_error:
@@ -708,6 +758,33 @@ e.g. "text/html" or "text/plain".</p></div>
         )
         .encode(&#34;utf-8&#34;)
     )</code></pre>
+</details>
+</dd>
+<dt id="oauth2_cli_auth.http_server.OAuthRedirectHandler.log_message"><code class="name flex">
+<span>def <span class="ident">log_message</span></span>(<span>self, format, *args)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Log an arbitrary message.</p>
+<p>This is used by all other logging functions.
+Override
+it if you have specific logging wishes.</p>
+<p>The first argument, FORMAT, is a format string for the
+message to be logged.
+If the format string contains
+any % escapes requiring parameters, they should be
+specified as subsequent arguments (it's just like
+printf!).</p>
+<p>The client ip and current date/time are prefixed to
+every message.</p>
+<p>Unicode control characters are replaced with escaped hex
+before writing the output to stderr.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def log_message(self, format, *args):
+    # silence the log messages
+    pass</code></pre>
 </details>
 </dd>
 </dl>
@@ -750,6 +827,7 @@ e.g. "text/html" or "text/plain".</p></div>
 <ul class="">
 <li><code><a title="oauth2_cli_auth.http_server.OAuthRedirectHandler.callback_template" href="#oauth2_cli_auth.http_server.OAuthRedirectHandler.callback_template">callback_template</a></code></li>
 <li><code><a title="oauth2_cli_auth.http_server.OAuthRedirectHandler.do_GET" href="#oauth2_cli_auth.http_server.OAuthRedirectHandler.do_GET">do_GET</a></code></li>
+<li><code><a title="oauth2_cli_auth.http_server.OAuthRedirectHandler.log_message" href="#oauth2_cli_auth.http_server.OAuthRedirectHandler.log_message">log_message</a></code></li>
 </ul>
 </li>
 </ul>
