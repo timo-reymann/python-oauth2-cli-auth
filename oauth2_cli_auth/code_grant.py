@@ -3,7 +3,7 @@ from dataclasses import dataclass
 import urllib.request
 import urllib.parse
 import base64
-import json
+from oauth2_cli_auth._urllib_util import _load_json
 
 
 @dataclass
@@ -29,13 +29,6 @@ class OAuth2ClientInfo:
             client_id=client_id,
             scopes=scopes,
         )
-
-
-def _load_json(url_or_request: str | urllib.request.Request) -> dict:
-    with urllib.request.urlopen(url_or_request) as response:
-        response_data = response.read().decode('utf-8')
-        json_response = json.loads(response_data)
-    return json_response
 
 
 def load_oidc_config(odic_well_known_endpoint: str) -> dict:
