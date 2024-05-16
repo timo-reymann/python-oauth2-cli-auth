@@ -201,7 +201,7 @@ class OAuthCallbackHttpServer(HTTPServer):
     def callback_url(self):
         return f"http://localhost:{self.server_port}"
 
-    def wait_for_code(self, attempts: int = 3, timeout_per_attempt=10) -> Optional[int]:
+    def wait_for_code(self, attempts: int = 3, timeout_per_attempt=10) -> Optional[str]:
         """
         Wait for the server to open the callback page containing the code query parameter.
 
