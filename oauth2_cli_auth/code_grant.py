@@ -1,8 +1,10 @@
-import webbrowser
-from dataclasses import dataclass
-import urllib.request
-import urllib.parse
 import base64
+import urllib.parse
+import urllib.request
+import webbrowser
+from collections.abc import Callable
+from dataclasses import dataclass
+
 from oauth2_cli_auth._urllib_util import _load_json
 
 
@@ -63,17 +65,20 @@ def get_auth_url(client_info: OAuth2ClientInfo, redirect_uri: str) -> str:
             f"&response_type=code")
 
 
-def exchange_code_for_access_token(client_info: OAuth2ClientInfo, redirect_uri: str, code: str,
-                                   access_token_field: str = "access_token") -> str:
+def exchange_code_for_response(
+        client_info: OAuth2ClientInfo,
+        redirect_uri: str,
+        code: str,
+) -> dict:
     """
-    Exchange a code for an access token using the endpoints from client info
+    Exchange a code for an access token using the endpoints from client info and return the entire response
 
     :param client_info: Info about oauth2 client
     :param redirect_uri: Callback URL
     :param code: Code to redeem
     :param access_token_field: Name of the field containing the access token to use. This might differ depending on
-                               the provider you are using. For example for Auth0 you have to set this to id_token
-    :return: Extracted access token from response
+                              the provider you are using. For example for Auth0 you have to set this to id_token
+    :return: Response from OAuth2 endpoint
     """
     headers = {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -89,5 +94,26 @@ def exchange_code_for_access_token(client_info: OAuth2ClientInfo, redirect_uri: 
 
     request = urllib.request.Request(client_info.token_url, data=encoded_data, headers=headers)
     json_response = _load_json(request)
+
+    return json_response
+
+
+def exchange_code_for_access_token(
+        client_info: OAuth2ClientInfo,
+        redirect_uri: str,
+        code: str,
+        access_token_field: str = "access_token"
+) -> str:
+    """
+    Exchange a code for an access token using the endpoints from client info
+
+    :param client_info: Info about oauth2 client
+    :param redirect_uri: Callback URL
+    :param code: Code to redeem
+    :param access_token_field: Name of the field containing the access token to use. This might differ depending on
+                               the provider you are using. For example for Auth0 you have to set this to id_token
+    :return: Extracted access token from response
+    """
+    json_response = exchange_code_for_response(client_info, redirect_uri, code)
 
     return json_response.get(access_token_field)
