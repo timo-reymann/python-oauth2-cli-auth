@@ -26,11 +26,13 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">import webbrowser
-from dataclasses import dataclass
-import urllib.request
+<pre><code class="python">import base64
 import urllib.parse
-import base64
+import urllib.request
+import webbrowser
+from collections.abc import Callable
+from dataclasses import dataclass
+
 from oauth2_cli_auth._urllib_util import _load_json
 
 
@@ -64,13 +66,15 @@ def load_oidc_config(odic_well_known_endpoint: str) -&gt; dict:
     return config
 
 
-def open_browser(url: str) -&gt; None:
+def open_browser(url: str, print_open_browser_instruction: Callable[[str], None] | None = print) -&gt; None:
     &#34;&#34;&#34;
     Open browser using webbrowser module and show message about URL open
+    :param print_open_browser_instruction: Callback to print the instructions to open the browser. Set to None in order to supress the output.
     :param url: URL to open and display
     :return: None
     &#34;&#34;&#34;
-    print(f&#34;Open your browser at\n{url}&#34;)
+    if print_open_browser_instruction is not None:
+        print_open_browser_instruction(f&#34;Open your browser at\n{url}&#34;)
     webbrowser.open(url)
 
 
@@ -89,17 +93,20 @@ def get_auth_url(client_info: OAuth2ClientInfo, redirect_uri: str) -&gt; str:
             f&#34;&amp;response_type=code&#34;)
 
 
-def exchange_code_for_access_token(client_info: OAuth2ClientInfo, redirect_uri: str, code: str,
-                                   access_token_field: str = &#34;access_token&#34;) -&gt; str:
+def exchange_code_for_response(
+        client_info: OAuth2ClientInfo,
+        redirect_uri: str,
+        code: str,
+) -&gt; dict:
     &#34;&#34;&#34;
-    Exchange a code for an access token using the endpoints from client info
+    Exchange a code for an access token using the endpoints from client info and return the entire response
 
     :param client_info: Info about oauth2 client
     :param redirect_uri: Callback URL
     :param code: Code to redeem
     :param access_token_field: Name of the field containing the access token to use. This might differ depending on
-                               the provider you are using. For example for Auth0 you have to set this to id_token
-    :return: Extracted access token from response
+                              the provider you are using. For example for Auth0 you have to set this to id_token
+    :return: Response from OAuth2 endpoint
     &#34;&#34;&#34;
     headers = {
         &#34;Content-Type&#34;: &#34;application/x-www-form-urlencoded&#34;,
@@ -115,6 +122,27 @@ def exchange_code_for_access_token(client_info: OAuth2ClientInfo, redirect_uri: 
 
     request = urllib.request.Request(client_info.token_url, data=encoded_data, headers=headers)
     json_response = _load_json(request)
+
+    return json_response
+
+
+def exchange_code_for_access_token(
+        client_info: OAuth2ClientInfo,
+        redirect_uri: str,
+        code: str,
+        access_token_field: str = &#34;access_token&#34;
+) -&gt; str:
+    &#34;&#34;&#34;
+    Exchange a code for an access token using the endpoints from client info
+
+    :param client_info: Info about oauth2 client
+    :param redirect_uri: Callback URL
+    :param code: Code to redeem
+    :param access_token_field: Name of the field containing the access token to use. This might differ depending on
+                               the provider you are using. For example for Auth0 you have to set this to id_token
+    :return: Extracted access token from response
+    &#34;&#34;&#34;
+    json_response = exchange_code_for_response(client_info, redirect_uri, code)
 
     return json_response.get(access_token_field)</code></pre>
 </details>
@@ -141,8 +169,12 @@ the provider you are using. For example for Auth0 you have to set this to id_tok
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def exchange_code_for_access_token(client_info: OAuth2ClientInfo, redirect_uri: str, code: str,
-                                   access_token_field: str = &#34;access_token&#34;) -&gt; str:
+<pre><code class="python">def exchange_code_for_access_token(
+        client_info: OAuth2ClientInfo,
+        redirect_uri: str,
+        code: str,
+        access_token_field: str = &#34;access_token&#34;
+) -&gt; str:
     &#34;&#34;&#34;
     Exchange a code for an access token using the endpoints from client info
 
@@ -152,6 +184,41 @@ the provider you are using. For example for Auth0 you have to set this to id_tok
     :param access_token_field: Name of the field containing the access token to use. This might differ depending on
                                the provider you are using. For example for Auth0 you have to set this to id_token
     :return: Extracted access token from response
+    &#34;&#34;&#34;
+    json_response = exchange_code_for_response(client_info, redirect_uri, code)
+
+    return json_response.get(access_token_field)</code></pre>
+</details>
+</dd>
+<dt id="oauth2_cli_auth.code_grant.exchange_code_for_response"><code class="name flex">
+<span>def <span class="ident">exchange_code_for_response</span></span>(<span>client_info: <a title="oauth2_cli_auth.code_grant.OAuth2ClientInfo" href="#oauth2_cli_auth.code_grant.OAuth2ClientInfo">OAuth2ClientInfo</a>, redirect_uri: str, code: str) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Exchange a code for an access token using the endpoints from client info and return the entire response</p>
+<p>:param client_info: Info about oauth2 client
+:param redirect_uri: Callback URL
+:param code: Code to redeem
+:param access_token_field: Name of the field containing the access token to use. This might differ depending on
+the provider you are using. For example for Auth0 you have to set this to id_token
+:return: Response from OAuth2 endpoint</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def exchange_code_for_response(
+        client_info: OAuth2ClientInfo,
+        redirect_uri: str,
+        code: str,
+) -&gt; dict:
+    &#34;&#34;&#34;
+    Exchange a code for an access token using the endpoints from client info and return the entire response
+
+    :param client_info: Info about oauth2 client
+    :param redirect_uri: Callback URL
+    :param code: Code to redeem
+    :param access_token_field: Name of the field containing the access token to use. This might differ depending on
+                              the provider you are using. For example for Auth0 you have to set this to id_token
+    :return: Response from OAuth2 endpoint
     &#34;&#34;&#34;
     headers = {
         &#34;Content-Type&#34;: &#34;application/x-www-form-urlencoded&#34;,
@@ -168,7 +235,7 @@ the provider you are using. For example for Auth0 you have to set this to id_tok
     request = urllib.request.Request(client_info.token_url, data=encoded_data, headers=headers)
     json_response = _load_json(request)
 
-    return json_response.get(access_token_field)</code></pre>
+    return json_response</code></pre>
 </details>
 </dd>
 <dt id="oauth2_cli_auth.code_grant.get_auth_url"><code class="name flex">
@@ -213,23 +280,26 @@ the provider you are using. For example for Auth0 you have to set this to id_tok
 </details>
 </dd>
 <dt id="oauth2_cli_auth.code_grant.open_browser"><code class="name flex">
-<span>def <span class="ident">open_browser</span></span>(<span>url: str) ‑> None</span>
+<span>def <span class="ident">open_browser</span></span>(<span>url: str, print_open_browser_instruction: collections.abc.Callable[[str], None] | None = &lt;built-in function print&gt;) ‑> None</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Open browser using webbrowser module and show message about URL open
+:param print_open_browser_instruction: Callback to print the instructions to open the browser. Set to None in order to supress the output.
 :param url: URL to open and display
 :return: None</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def open_browser(url: str) -&gt; None:
+<pre><code class="python">def open_browser(url: str, print_open_browser_instruction: Callable[[str], None] | None = print) -&gt; None:
     &#34;&#34;&#34;
     Open browser using webbrowser module and show message about URL open
+    :param print_open_browser_instruction: Callback to print the instructions to open the browser. Set to None in order to supress the output.
     :param url: URL to open and display
     :return: None
     &#34;&#34;&#34;
-    print(f&#34;Open your browser at\n{url}&#34;)
+    if print_open_browser_instruction is not None:
+        print_open_browser_instruction(f&#34;Open your browser at\n{url}&#34;)
     webbrowser.open(url)</code></pre>
 </details>
 </dd>
@@ -332,6 +402,7 @@ def from_oidc_endpoint(oidc_config_endpoint: str, client_id: str, scopes: list[s
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
 <li><code><a title="oauth2_cli_auth.code_grant.exchange_code_for_access_token" href="#oauth2_cli_auth.code_grant.exchange_code_for_access_token">exchange_code_for_access_token</a></code></li>
+<li><code><a title="oauth2_cli_auth.code_grant.exchange_code_for_response" href="#oauth2_cli_auth.code_grant.exchange_code_for_response">exchange_code_for_response</a></code></li>
 <li><code><a title="oauth2_cli_auth.code_grant.get_auth_url" href="#oauth2_cli_auth.code_grant.get_auth_url">get_auth_url</a></code></li>
 <li><code><a title="oauth2_cli_auth.code_grant.load_oidc_config" href="#oauth2_cli_auth.code_grant.load_oidc_config">load_oidc_config</a></code></li>
 <li><code><a title="oauth2_cli_auth.code_grant.open_browser" href="#oauth2_cli_auth.code_grant.open_browser">open_browser</a></code></li>

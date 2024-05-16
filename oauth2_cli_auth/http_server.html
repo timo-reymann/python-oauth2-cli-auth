@@ -229,7 +229,7 @@ class OAuthCallbackHttpServer(HTTPServer):
     def callback_url(self):
         return f&#34;http://localhost:{self.server_port}&#34;
 
-    def wait_for_code(self, attempts: int = 3, timeout_per_attempt=10) -&gt; Optional[int]:
+    def wait_for_code(self, attempts: int = 3, timeout_per_attempt=10) -&gt; Optional[str]:
         &#34;&#34;&#34;
         Wait for the server to open the callback page containing the code query parameter.
 
@@ -477,7 +477,7 @@ May be extended, do not override.</p></div>
     def callback_url(self):
         return f&#34;http://localhost:{self.server_port}&#34;
 
-    def wait_for_code(self, attempts: int = 3, timeout_per_attempt=10) -&gt; Optional[int]:
+    def wait_for_code(self, attempts: int = 3, timeout_per_attempt=10) -&gt; Optional[str]:
         &#34;&#34;&#34;
         Wait for the server to open the callback page containing the code query parameter.
 
@@ -535,7 +535,7 @@ def callback_url(self):
 </details>
 </dd>
 <dt id="oauth2_cli_auth.http_server.OAuthCallbackHttpServer.wait_for_code"><code class="name flex">
-<span>def <span class="ident">wait_for_code</span></span>(<span>self, attempts: int = 3, timeout_per_attempt=10) ‑> Optional[int]</span>
+<span>def <span class="ident">wait_for_code</span></span>(<span>self, attempts: int = 3, timeout_per_attempt=10) ‑> Optional[str]</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Wait for the server to open the callback page containing the code query parameter.</p>
@@ -548,7 +548,7 @@ This prevents the CLI from getting stuck by unsolved callback URls</p>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def wait_for_code(self, attempts: int = 3, timeout_per_attempt=10) -&gt; Optional[int]:
+<pre><code class="python">def wait_for_code(self, attempts: int = 3, timeout_per_attempt=10) -&gt; Optional[str]:
     &#34;&#34;&#34;
     Wait for the server to open the callback page containing the code query parameter.
 
