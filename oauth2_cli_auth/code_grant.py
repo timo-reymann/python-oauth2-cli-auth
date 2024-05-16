@@ -1,3 +1,6 @@
+"""
+Functionality to work with OAuth2 code grant
+"""
 import base64
 import urllib.parse
 import urllib.request
@@ -34,6 +37,11 @@ class OAuth2ClientInfo:
 
 
 def load_oidc_config(odic_well_known_endpoint: str) -> dict:
+    """
+    Load OIDC configuration from the well known configuration endpoint
+
+    :param odic_well_known_endpoint: Endpoint to load configuration from
+    """
     config = _load_json(odic_well_known_endpoint)
     return config
 
@@ -76,8 +84,6 @@ def exchange_code_for_response(
     :param client_info: Info about oauth2 client
     :param redirect_uri: Callback URL
     :param code: Code to redeem
-    :param access_token_field: Name of the field containing the access token to use. This might differ depending on
-                              the provider you are using. For example for Auth0 you have to set this to id_token
     :return: Response from OAuth2 endpoint
     """
     headers = {

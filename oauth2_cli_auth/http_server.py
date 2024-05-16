@@ -1,3 +1,6 @@
+"""
+Local HTTP server logic
+"""
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from string import Template
 from typing import Optional
@@ -6,6 +9,9 @@ from oauth2_cli_auth._timeout import _method_with_timeout, TimeoutException
 
 
 class CallbackPageTemplate:
+    """
+    Holder for callback page assets and template
+    """
     SUCCESS_SVG = """
     <svg xmlns="http://www.w3.org/2000/svg" width="154px" height="154px">
         <g fill="none" stroke="#22AE73" stroke-width="2">
@@ -149,6 +155,9 @@ class CallbackPageTemplate:
 
 
 class OAuthRedirectHandler(BaseHTTPRequestHandler):
+    """
+    HTTPRequest Handler that is intended to be used as oauth2 callback page
+    """
     callback_template = CallbackPageTemplate()
 
     def log_message(self, format, *args):

@@ -1,3 +1,6 @@
+"""
+Ready to use workflows
+"""
 from oauth2_cli_auth import OAuthCallbackHttpServer, get_auth_url, exchange_code_for_access_token, OAuth2ClientInfo, \
     open_browser
 
@@ -10,6 +13,7 @@ def get_access_token_with_browser_open(client_info: OAuth2ClientInfo, server_por
     - Open the browser with the authorization URL
     - Wait for the code to arrive
     - Get access token from code
+
     :param client_info: Client Info for Oauth2 Interaction
     :param server_port: Port of the local web server to spin up
     :return: Access Token
