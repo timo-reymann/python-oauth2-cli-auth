@@ -41,6 +41,7 @@ pytest = "^7.4.3"
 coverage = "^7.3.2"
 pdoc3 = "^0.10.0"
 setuptools = "^69.5.1"
+pydoctor = "^23.9.1"
 
 [tool.coverage.run]
 omit = [".*", "*/site-packages/*", "*/*_test.py"]
@@ -51,3 +52,19 @@ fail_under = 70
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pydoctor]
+add-package = ["oauth2_cli_auth"]
+intersphinx = ["https://docs.python.org/3/objects.inv"]
+docformat = "restructuredtext"
+verbose = 1
+warnings-as-errors = true
+project-name = "oauth2_cli_auth"
+project-url = "https://github.com/timo-reymann/python-oauth2-cli-auth"
+html-output = "gh-pages"
+theme = "base"
+template-dir = "docs-theme"
+privacy = [
+    "HIDDEN:oauth2_cli_auth.*_test",
+    "HIDDEN:oauth2_cli_auth.conftest"
+]
