@@ -34,8 +34,7 @@ python = "^3.9"
 [[tool.poetry.source]]
 name = "testpypi"
 url = "https://test.pypi.org/legacy/"
-default = false
-secondary = false
+priority="explicit"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.3"
