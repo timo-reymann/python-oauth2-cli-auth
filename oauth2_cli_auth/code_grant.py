@@ -36,13 +36,15 @@ def load_oidc_config(odic_well_known_endpoint: str) -> dict:
     return config
 
 
-def open_browser(url: str) -> None:
+def open_browser(url: str, print_open_browser_instruction: Callable[[str], None] | None = print) -> None:
     """
     Open browser using webbrowser module and show message about URL open
+    :param print_open_browser_instruction: Callback to print the instructions to open the browser. Set to None in order to supress the output.
     :param url: URL to open and display
     :return: None
     """
-    print(f"Open your browser at\n{url}")
+    if print_open_browser_instruction is not None:
+        print_open_browser_instruction(f"Open your browser at\n{url}")
     webbrowser.open(url)
 
 
