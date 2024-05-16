@@ -1,3 +1,16 @@
+## [1.3.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.2.0...1.3.0) (2024-05-16)
+
+
+### Features
+
+* **code_grant:** Add exchange_code_for_response ([995debc](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/995debc34d84d189c749317c4e5b9a5feedd8d9d))
+* **open_browser:** Allow to override open browser display instruction method ([ebca482](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/ebca48285d23bf8a9fbfceb831f10edf08162575))
+
+
+### Bug Fixes
+
+* Fix return type for HttpServer[#wait](https://github.com/timo-reymann/python-oauth2-cli-auth/issues/wait)_for_code ([83baf8f](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/83baf8f53adc597100b904fcb57e44ec1c0fc8ca))
+
 ## [1.2.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.1.0...1.2.0) (2023-12-10)
 
 
