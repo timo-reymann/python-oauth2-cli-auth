@@ -70,4 +70,4 @@ privacy = [
 ]
 
 theme = "base"
-template-dir = "docs-theme"
+template-dir = "pydoctor-theme"
