@@ -6,7 +6,7 @@
 
   <head>
     
-    <title>oauth2_cli_auth</title>
+    <title>oauth2_cli_auth.simplified_flow</title>
     <meta name="generator" content="pydoctor 23.9.1"> 
         
     </meta>
@@ -140,8 +140,50 @@
   <div>
 
       <div class="thingTitle">
+        <span>Module</span>
+        <code class="thisobject"><a href="oauth2_cli_auth.simplified_flow.html" class="internal-link" title="This module">simplified<wbr></wbr>_flow</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#get_access_token_with_browser_open" class="internal-link" title="oauth2_cli_auth.simplified_flow.get_access_token_with_browser_open">get<wbr></wbr>_access<wbr></wbr>_token<wbr></wbr>_with<wbr></wbr>_browser<wbr></wbr>_open</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        
+         
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
         <span>Package</span>
-        <code class="thisobject"><a href="index.html" class="internal-link" title="This package">oauth2<wbr></wbr>_cli<wbr></wbr>_auth</a></code> 
+        <code><a href="index.html" class="internal-link" title="The parent of this module">oauth2<wbr></wbr>_cli<wbr></wbr>_auth</a></code> 
       </div>
       
       <div>
@@ -170,7 +212,7 @@
             </div>
         
 
-    </li><li class="">
+    </li><li class=" thisobject">
         
         
         
@@ -237,14 +279,14 @@
         
 
         <div class="page-header">
-          <h1 class="package"><code><code><a href="index.html" class="internal-link">oauth2_cli_auth</a></code></code></h1>
+          <h1 class="module"><code><code><a href="index.html" class="internal-link">oauth2_cli_auth</a></code><wbr></wbr>.<code><a href="oauth2_cli_auth.simplified_flow.html" class="internal-link" title="oauth2_cli_auth.simplified_flow">simplified_flow</a></code></code></h1>
           <div id="showPrivate">
             <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
           </div>
         </div>
 
         <div class="categoryHeader">
-          package documentation
+          module documentation
         </div>
 
         <div class="extrasDocstring">
@@ -253,38 +295,18 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Authenticate against OAuth2 Provider in Python CLIs</p></div>
+          <div><p>Ready to use workflows</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id1">
+          <table class="children sortable" id="id10">
   
   
-  <tr class="module">
+  <tr class="function">
     
-    <td>Module</td>
-    <td><code><a href="oauth2_cli_auth.code_grant.html" class="internal-link" title="oauth2_cli_auth.code_grant">code<wbr></wbr>_grant</a></code></td>
-    <td>Functionality to work with OAuth2 code grant</td>
-  </tr><tr class="module">
-    
-    <td>Module</td>
-    <td><code><a href="oauth2_cli_auth.http_server.html" class="internal-link" title="oauth2_cli_auth.http_server">http<wbr></wbr>_server</a></code></td>
-    <td>Local HTTP server logic</td>
-  </tr><tr class="module">
-    
-    <td>Module</td>
-    <td><code><a href="oauth2_cli_auth.simplified_flow.html" class="internal-link" title="oauth2_cli_auth.simplified_flow">simplified<wbr></wbr>_flow</a></code></td>
-    <td>Ready to use workflows</td>
-  </tr><tr class="module private">
-    
-    <td>Module</td>
-    <td><code><a href="oauth2_cli_auth._timeout.html" class="internal-link" title="oauth2_cli_auth._timeout">_timeout</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="module private">
-    
-    <td>Module</td>
-    <td><code><a href="oauth2_cli_auth._urllib_util.html" class="internal-link" title="oauth2_cli_auth._urllib_util">_urllib<wbr></wbr>_util</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td>Function</td>
+    <td><code><a href="#get_access_token_with_browser_open" class="internal-link" title="oauth2_cli_auth.simplified_flow.get_access_token_with_browser_open">get<wbr></wbr>_access<wbr></wbr>_token<wbr></wbr>_with<wbr></wbr>_browser<wbr></wbr>_open</a></code></td>
+    <td>Provides a simplified API to:</td>
   </tr>
 </table>
           
@@ -293,7 +315,38 @@
         </div>
 
         <div id="childList">
-          
+          <div class="basefunction">
+  
+  
+  <a name="oauth2_cli_auth.simplified_flow.get_access_token_with_browser_open">
+    
+  </a>
+  <a name="get_access_token_with_browser_open">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">get_access_token_with_browser_open</span><span class="function-signature">(client_info: <code>OAuth2ClientInfo</code>, server_port: <code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code> = 8080) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></span>:
+    
+    <a class="headerLink" href="#get_access_token_with_browser_open" title="oauth2_cli_auth.simplified_flow.get_access_token_with_browser_open">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Provides a simplified API to:</p>
+<ul class="rst-simple">
+<li>Spin up the callback server</li>
+<li>Open the browser with the authorization URL</li>
+<li>Wait for the code to arrive</li>
+<li>Get access token from code</li>
+</ul>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">client<wbr></wbr>_info:</span><code>OAuth2ClientInfo</code></td><td class="fieldArgDesc">Client Info for Oauth2 Interaction</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">server<wbr></wbr>_port:</span><code><a href="https://docs.python.org/3/library/functions.html#int" class="intersphinx-link">int</a></code></td><td class="fieldArgDesc">Port of the local web server to spin up</td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Access Token</td></tr></table></div>
+  </div>
+</div>
         </div>
       
       </div>

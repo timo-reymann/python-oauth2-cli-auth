@@ -6,7 +6,7 @@
 
   <head>
     
-    <title>oauth2_cli_auth</title>
+    <title>oauth2_cli_auth._urllib_util</title>
     <meta name="generator" content="pydoctor 23.9.1"> 
         
     </meta>
@@ -140,8 +140,60 @@
   <div>
 
       <div class="thingTitle">
+        <span>Module</span>
+        <code class="thisobject"><a href="oauth2_cli_auth._urllib_util.html" class="internal-link" title="This module">_urllib<wbr></wbr>_util</a></code> 
+      </div>
+      
+      <div>
+        
+
+        
+         
+
+        
+        
+
+        <div class="childrenKindTitle">Functions</div>
+        <ul>
+    
+    <li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_load_json" class="internal-link" title="oauth2_cli_auth._urllib_util._load_json">_load<wbr></wbr>_json</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_urlopen_with_backoff" class="internal-link" title="oauth2_cli_auth._urllib_util._urlopen_with_backoff">_urlopen<wbr></wbr>_with<wbr></wbr>_backoff</a></code>
+            </div>
+        
+
+    </li>
+</ul> 
+
+        
+         
+
+        
+         
+
+        
+         
+        
+      </div>
+  </div><div>
+
+      <div class="thingTitle">
         <span>Package</span>
-        <code class="thisobject"><a href="index.html" class="internal-link" title="This package">oauth2<wbr></wbr>_cli<wbr></wbr>_auth</a></code> 
+        <code><a href="index.html" class="internal-link" title="The parent of this module">oauth2<wbr></wbr>_cli<wbr></wbr>_auth</a></code> 
       </div>
       
       <div>
@@ -190,7 +242,7 @@
             </div>
         
 
-    </li><li class="private">
+    </li><li class="private thisobject">
         
         
         
@@ -237,14 +289,14 @@
         
 
         <div class="page-header">
-          <h1 class="package"><code><code><a href="index.html" class="internal-link">oauth2_cli_auth</a></code></code></h1>
+          <h1 class="module private"><code><code><a href="index.html" class="internal-link">oauth2_cli_auth</a></code><wbr></wbr>.<code><a href="oauth2_cli_auth._urllib_util.html" class="internal-link" title="oauth2_cli_auth._urllib_util">_urllib_util</a></code></code></h1>
           <div id="showPrivate">
             <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
           </div>
         </div>
 
         <div class="categoryHeader">
-          package documentation
+          module documentation
         </div>
 
         <div class="extrasDocstring">
@@ -253,37 +305,22 @@
         </div>
 
         <div class="moduleDocstring">
-          <div><p>Authenticate against OAuth2 Provider in Python CLIs</p></div>
+          <div><p class="undocumented">Undocumented</p></div>
         </div>
 
         <div id="splitTables">
-          <table class="children sortable" id="id1">
+          <table class="children sortable" id="id3">
   
   
-  <tr class="module">
+  <tr class="function private">
     
-    <td>Module</td>
-    <td><code><a href="oauth2_cli_auth.code_grant.html" class="internal-link" title="oauth2_cli_auth.code_grant">code<wbr></wbr>_grant</a></code></td>
-    <td>Functionality to work with OAuth2 code grant</td>
-  </tr><tr class="module">
-    
-    <td>Module</td>
-    <td><code><a href="oauth2_cli_auth.http_server.html" class="internal-link" title="oauth2_cli_auth.http_server">http<wbr></wbr>_server</a></code></td>
-    <td>Local HTTP server logic</td>
-  </tr><tr class="module">
-    
-    <td>Module</td>
-    <td><code><a href="oauth2_cli_auth.simplified_flow.html" class="internal-link" title="oauth2_cli_auth.simplified_flow">simplified<wbr></wbr>_flow</a></code></td>
-    <td>Ready to use workflows</td>
-  </tr><tr class="module private">
-    
-    <td>Module</td>
-    <td><code><a href="oauth2_cli_auth._timeout.html" class="internal-link" title="oauth2_cli_auth._timeout">_timeout</a></code></td>
+    <td>Function</td>
+    <td><code><a href="#_load_json" class="internal-link" title="oauth2_cli_auth._urllib_util._load_json">_load<wbr></wbr>_json</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="module private">
+  </tr><tr class="function private">
     
-    <td>Module</td>
-    <td><code><a href="oauth2_cli_auth._urllib_util.html" class="internal-link" title="oauth2_cli_auth._urllib_util">_urllib<wbr></wbr>_util</a></code></td>
+    <td>Function</td>
+    <td><code><a href="#_urlopen_with_backoff" class="internal-link" title="oauth2_cli_auth._urllib_util._urlopen_with_backoff">_urlopen<wbr></wbr>_with<wbr></wbr>_backoff</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -293,7 +330,55 @@
         </div>
 
         <div id="childList">
-          
+          <div class="basefunction private">
+  
+  
+  <a name="oauth2_cli_auth._urllib_util._load_json">
+    
+  </a>
+  <a name="_load_json">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_load_json</span><span class="function-signature">(url_or_request: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>|<a href="https://docs.python.org/3/library/urllib.request.html#urllib.request.Request" class="intersphinx-link">urllib.request.Request</a></code>) -&gt; <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="intersphinx-link">dict</a></code></span>:
+    
+    <a class="headerLink" href="#_load_json" title="oauth2_cli_auth._urllib_util._load_json">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  
+  <a name="oauth2_cli_auth._urllib_util._urlopen_with_backoff">
+    
+  </a>
+  <a name="_urlopen_with_backoff">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_urlopen_with_backoff</span><span class="function-signature">(url, max_retries=3, base_delay=1, timeout=15)</span>:
+    
+    <a class="headerLink" href="#_urlopen_with_backoff" title="oauth2_cli_auth._urllib_util._urlopen_with_backoff">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div>
         </div>
       
       </div>
