@@ -1,3 +1,10 @@
+## [1.4.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.3.0...1.4.0) (2024-05-19)
+
+
+### Features
+
+* Add pydoctor-theme submodule ([fc33d1c](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/fc33d1c32d0317ea6563d9d6c314dc4592d40e0f))
+
 ## [1.3.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.2.0...1.3.0) (2024-05-16)
 
 
