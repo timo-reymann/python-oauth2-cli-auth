@@ -85,7 +85,7 @@ So I created this small library without any dependencies besides the python stan
 
 ## Documentation
 
-- [Library documentation](https://timo-reymann.github.io/python-oauth2-cli-auth/oauth2_cli_auth/)
+- [Library documentation](https://timo-reymann.github.io/python-oauth2-cli-auth)
 
 ## Contributing
 
