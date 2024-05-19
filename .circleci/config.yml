@@ -51,6 +51,11 @@ jobs:
     executor: node
     steps:
       - checkout
+      - run:
+          name: Checkout pydoctor-theme submodule
+          command: |
+            git submodule sync
+            git submodule update --init --recursive
       - python/install-packages:
           pkg-manager: poetry
       - run:
