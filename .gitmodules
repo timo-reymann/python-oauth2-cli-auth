@@ -1,0 +1,3 @@
+[submodule "pydoctor-theme"]
+	path = pydoctor-theme
+	url = ../pydoctor-theme.git
