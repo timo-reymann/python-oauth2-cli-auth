@@ -42,7 +42,7 @@ input {
     margin-top: 10px;
 }
 
-body>.container-fluid {
+body > .container-fluid {
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 10px;
@@ -239,6 +239,12 @@ div.important {
     table .attribute,
     table .property {
         background-color: rgb(48, 21, 51);
+        color: white;
+    }
+
+    table .package {
+        background-color: rgb(70, 44, 2);
+        color: white;
     }
 
     #childList a:target ~ .functionHeader,
