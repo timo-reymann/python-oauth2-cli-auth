@@ -22,6 +22,7 @@ class CallbackPageTemplate:
         </g>
     </svg>
     """
+    """SVG to display checkmark"""
 
     ERROR_SVG = """
     <svg xmlns="http://www.w3.org/2000/svg" width="154px" height="154px">
@@ -32,6 +33,7 @@ class CallbackPageTemplate:
         </g>
     </svg>
     """
+    """SVG to display error icon"""
 
     PAGE_TEMPLATE = Template(
         """
@@ -147,8 +149,18 @@ class CallbackPageTemplate:
                 </html>
                 """
     )
+    """Template for callback HTML page"""
 
     def render(self, title: str, message: str, lang: str = "en", has_error: bool = False):
+        """
+        Render callback page
+
+        :param title: Page title
+        :param message: Message to display under the icon
+        :param lang: Langauge for HTML tag
+        :param has_error: Indicates weather checkmark (false) or cross (true) should be displayed
+        :return: Rendered HTML
+        """
         return self.PAGE_TEMPLATE.substitute(
             lang=lang,
             title=title,
