@@ -176,6 +176,26 @@
             </div>
         
 
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_serve_callback_page" class="internal-link" title="oauth2_cli_auth.http_server.OAuthRedirectHandler._serve_callback_page">_serve<wbr></wbr>_callback<wbr></wbr>_page</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_serve_html" class="internal-link" title="oauth2_cli_auth.http_server.OAuthRedirectHandler._serve_html">_serve<wbr></wbr>_html</a></code>
+            </div>
+        
+
     </li>
 </ul> 
 
@@ -191,7 +211,17 @@
         
 
         
-            <div class="itemName"><code><a href="#callback_template" class="internal-link" title="oauth2_cli_auth.http_server.OAuthRedirectHandler.callback_template">callback<wbr></wbr>_template</a></code>
+            <div class="itemName"><code><a href="#LANGUAGE" class="internal-link" title="oauth2_cli_auth.http_server.OAuthRedirectHandler.LANGUAGE">LANGUAGE</a></code>
+            </div>
+        
+
+    </li><li class="private">
+        
+        
+        
+
+        
+            <div class="itemName"><code><a href="#_callback_template" class="internal-link" title="oauth2_cli_auth.http_server.OAuthRedirectHandler._callback_template">_callback<wbr></wbr>_template</a></code>
             </div>
         
 
@@ -309,16 +339,31 @@
     
     <td>Method</td>
     <td><code><a href="#do_GET" class="internal-link" title="oauth2_cli_auth.http_server.OAuthRedirectHandler.do_GET">do_<wbr></wbr>GET</a></code></td>
-    <td><span class="undocumented">Undocumented</span></td>
+    <td>Provides callback page for the oauth2 redirect</td>
   </tr><tr class="method">
     
     <td>Method</td>
     <td><code><a href="#log_message" class="internal-link" title="oauth2_cli_auth.http_server.OAuthRedirectHandler.log_message">log<wbr></wbr>_message</a></code></td>
+    <td>Disables logging for BaseHTTPRequestHandler</td>
+  </tr><tr class="constant">
+    
+    <td>Constant</td>
+    <td><code><a href="#LANGUAGE" class="internal-link" title="oauth2_cli_auth.http_server.OAuthRedirectHandler.LANGUAGE">LANGUAGE</a></code></td>
+    <td>HTML language to render for callback page</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_serve_callback_page" class="internal-link" title="oauth2_cli_auth.http_server.OAuthRedirectHandler._serve_callback_page">_serve<wbr></wbr>_callback<wbr></wbr>_page</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
-  </tr><tr class="classvariable">
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><code><a href="#_serve_html" class="internal-link" title="oauth2_cli_auth.http_server.OAuthRedirectHandler._serve_html">_serve<wbr></wbr>_html</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable private">
     
     <td>Class Variable</td>
-    <td><code><a href="#callback_template" class="internal-link" title="oauth2_cli_auth.http_server.OAuthRedirectHandler.callback_template">callback<wbr></wbr>_template</a></code></td>
+    <td><code><a href="#_callback_template" class="internal-link" title="oauth2_cli_auth.http_server.OAuthRedirectHandler._callback_template">_callback<wbr></wbr>_template</a></code></td>
     <td><span class="undocumented">Undocumented</span></td>
   </tr>
 </table>
@@ -350,7 +395,7 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p class="undocumented">Undocumented</p></div>
+    <div><p>Provides callback page for the oauth2 redirect</p></div>
   </div>
 </div><div class="basemethod">
   
@@ -374,22 +419,94 @@
   </div>
   <div class="docstring functionBody">
     
-    <div><p class="undocumented">Undocumented</p></div>
+    <div><p>Disables logging for BaseHTTPRequestHandler</p></div>
   </div>
-</div><div class="baseclassvariable">
+</div><div class="baseconstant">
   
   
-  <a name="oauth2_cli_auth.http_server.OAuthRedirectHandler.callback_template">
+  <a name="oauth2_cli_auth.http_server.OAuthRedirectHandler.LANGUAGE">
     
   </a>
-  <a name="callback_template">
+  <a name="LANGUAGE">
     
   </a>
   <div class="functionHeader">
     
-    <span class="py-defname">callback_template</span> =
+    <span class="py-defname">LANGUAGE</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
     
-    <a class="headerLink" href="#callback_template" title="oauth2_cli_auth.http_server.OAuthRedirectHandler.callback_template">
+    <a class="headerLink" href="#LANGUAGE" title="oauth2_cli_auth.http_server.OAuthRedirectHandler.LANGUAGE">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>HTML language to render for callback page</p></div>
+    <table class="valueTable"><tr class="fieldStart"><td class="fieldName">Value</td></tr><tr><td><pre class="constant-value"><code><span class="rst-variable-quote">'</span><span class="rst-variable-string">en</span><span class="rst-variable-quote">'</span></code></pre></td></tr></table>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="oauth2_cli_auth.http_server.OAuthRedirectHandler._serve_callback_page">
+    
+  </a>
+  <a name="_serve_callback_page">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_serve_callback_page</span><span class="function-signature">(self, title: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, message: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, has_error: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="intersphinx-link">bool</a></code>)</span>:
+    
+    <a class="headerLink" href="#_serve_callback_page" title="oauth2_cli_auth.http_server.OAuthRedirectHandler._serve_callback_page">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  
+  <a name="oauth2_cli_auth.http_server.OAuthRedirectHandler._serve_html">
+    
+  </a>
+  <a name="_serve_html">
+    
+  </a>
+  <div class="functionHeader">
+    
+    
+    <span class="py-keyword">def</span> <span class="py-defname">_serve_html</span><span class="function-signature">(self, html: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>)</span>:
+    
+    <a class="headerLink" href="#_serve_html" title="oauth2_cli_auth.http_server.OAuthRedirectHandler._serve_html">
+      
+      
+      ¶
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  
+  <a name="oauth2_cli_auth.http_server.OAuthRedirectHandler._callback_template">
+    
+  </a>
+  <a name="_callback_template">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-defname">_callback_template</span> =
+    
+    <a class="headerLink" href="#_callback_template" title="oauth2_cli_auth.http_server.OAuthRedirectHandler._callback_template">
       
       
       ¶
@@ -412,7 +529,7 @@
   <div class="container">
     <a href="index.html">API Documentation</a> for <a href="https://github.com/timo-reymann/python-oauth2-cli-auth" class="projecthome">oauth2_cli_auth</a>,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    23.9.1 at 2024-05-22 07:23:53.
+    23.9.1 at 2024-05-25 19:50:54.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 

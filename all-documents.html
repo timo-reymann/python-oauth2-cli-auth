@@ -218,7 +218,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Constant</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary">SVG to display checkmark</div>
           </li><li id="oauth2_cli_auth.http_server.CallbackPageTemplate.ERROR_SVG">
             
             <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.http<wbr></wbr>_server<wbr></wbr>.<wbr></wbr>Callback<wbr></wbr>Page<wbr></wbr>Template<wbr></wbr>.ERROR<wbr></wbr>_SVG</div>
@@ -226,7 +226,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Constant</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary">SVG to display error icon</div>
           </li><li id="oauth2_cli_auth.http_server.CallbackPageTemplate.PAGE_TEMPLATE">
             
             <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.http<wbr></wbr>_server<wbr></wbr>.<wbr></wbr>Callback<wbr></wbr>Page<wbr></wbr>Template<wbr></wbr>.PAGE<wbr></wbr>_TEMPLATE</div>
@@ -234,7 +234,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Constant</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary">Template for callback HTML page</div>
           </li><li id="oauth2_cli_auth.http_server.CallbackPageTemplate.render">
             
             <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.http<wbr></wbr>_server<wbr></wbr>.<wbr></wbr>Callback<wbr></wbr>Page<wbr></wbr>Template<wbr></wbr>.render</div>
@@ -242,7 +242,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary">Render callback page</div>
           </li><li id="oauth2_cli_auth.http_server.OAuthRedirectHandler">
             
             <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.http<wbr></wbr>_server<wbr></wbr>.<wbr></wbr>OAuth<wbr></wbr>Redirect<wbr></wbr>Handler</div>
@@ -251,14 +251,22 @@
             <div class="kind">Class</div>
             <div class="privacy">PUBLIC</div>
             <div class="summary">HTTPRequest Handler that is intended to be used as oauth2 callback page</div>
-          </li><li id="oauth2_cli_auth.http_server.OAuthRedirectHandler.callback_template">
+          </li><li id="oauth2_cli_auth.http_server.OAuthRedirectHandler._callback_template">
             
-            <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.http<wbr></wbr>_server<wbr></wbr>.<wbr></wbr>OAuth<wbr></wbr>Redirect<wbr></wbr>Handler<wbr></wbr>.callback<wbr></wbr>_template</div>
-            <div class="url">oauth2_cli_auth.http_server.OAuthRedirectHandler.html#callback_template</div>
+            <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.http<wbr></wbr>_server<wbr></wbr>.<wbr></wbr>OAuth<wbr></wbr>Redirect<wbr></wbr>Handler<wbr></wbr>._callback<wbr></wbr>_template</div>
+            <div class="url">oauth2_cli_auth.http_server.OAuthRedirectHandler.html#_callback_template</div>
             <div class="type">Attribute</div>
             <div class="kind">Class Variable</div>
-            <div class="privacy">PUBLIC</div>
+            <div class="privacy">PRIVATE</div>
             <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="oauth2_cli_auth.http_server.OAuthRedirectHandler.LANGUAGE">
+            
+            <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.http<wbr></wbr>_server<wbr></wbr>.<wbr></wbr>OAuth<wbr></wbr>Redirect<wbr></wbr>Handler<wbr></wbr>.LANGUAGE</div>
+            <div class="url">oauth2_cli_auth.http_server.OAuthRedirectHandler.html#LANGUAGE</div>
+            <div class="type">Attribute</div>
+            <div class="kind">Constant</div>
+            <div class="privacy">PUBLIC</div>
+            <div class="summary">HTML language to render for callback page</div>
           </li><li id="oauth2_cli_auth.http_server.OAuthRedirectHandler.log_message">
             
             <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.http<wbr></wbr>_server<wbr></wbr>.<wbr></wbr>OAuth<wbr></wbr>Redirect<wbr></wbr>Handler<wbr></wbr>.log<wbr></wbr>_message</div>
@@ -266,6 +274,22 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
+            <div class="summary">Disables logging for BaseHTTPRequestHandler</div>
+          </li><li id="oauth2_cli_auth.http_server.OAuthRedirectHandler._serve_html">
+            
+            <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.http<wbr></wbr>_server<wbr></wbr>.<wbr></wbr>OAuth<wbr></wbr>Redirect<wbr></wbr>Handler<wbr></wbr>._serve<wbr></wbr>_html</div>
+            <div class="url">oauth2_cli_auth.http_server.OAuthRedirectHandler.html#_serve_html</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
+            <div class="summary"><span class="undocumented">Undocumented</span></div>
+          </li><li id="oauth2_cli_auth.http_server.OAuthRedirectHandler._serve_callback_page">
+            
+            <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.http<wbr></wbr>_server<wbr></wbr>.<wbr></wbr>OAuth<wbr></wbr>Redirect<wbr></wbr>Handler<wbr></wbr>._serve<wbr></wbr>_callback<wbr></wbr>_page</div>
+            <div class="url">oauth2_cli_auth.http_server.OAuthRedirectHandler.html#_serve_callback_page</div>
+            <div class="type">Function</div>
+            <div class="kind">Method</div>
+            <div class="privacy">PRIVATE</div>
             <div class="summary"><span class="undocumented">Undocumented</span></div>
           </li><li id="oauth2_cli_auth.http_server.OAuthRedirectHandler.do_GET">
             
@@ -274,7 +298,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary">Provides callback page for the oauth2 redirect</div>
           </li><li id="oauth2_cli_auth.http_server.OAuthCallbackHttpServer">
             
             <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.http<wbr></wbr>_server<wbr></wbr>.<wbr></wbr>OAuth<wbr></wbr>Callback<wbr></wbr>Http<wbr></wbr>Server</div>
@@ -306,7 +330,7 @@
             <div class="type">Function</div>
             <div class="kind">Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary">This method should only be called after the request was done and might be None when no token is given.</div>
           </li><li id="oauth2_cli_auth.http_server.OAuthCallbackHttpServer.callback_url">
             
             <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.http<wbr></wbr>_server<wbr></wbr>.<wbr></wbr>OAuth<wbr></wbr>Callback<wbr></wbr>Http<wbr></wbr>Server<wbr></wbr>.callback<wbr></wbr>_url</div>
@@ -314,7 +338,7 @@
             <div class="type">Attribute</div>
             <div class="kind">Property</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary">Callback URL for the HTTP-Server</div>
           </li><li id="oauth2_cli_auth.http_server.OAuthCallbackHttpServer.wait_for_code">
             
             <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.http<wbr></wbr>_server<wbr></wbr>.<wbr></wbr>OAuth<wbr></wbr>Callback<wbr></wbr>Http<wbr></wbr>Server<wbr></wbr>.wait<wbr></wbr>_for<wbr></wbr>_code</div>
@@ -386,7 +410,7 @@
             <div class="type">Function</div>
             <div class="kind">Static Method</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary"><span class="undocumented">Undocumented</span></div>
+            <div class="summary">Create client information object from well known endpoint in format as specified in <a class="rst-reference rst-external" href="https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata" target="_top">https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata</a></div>
           </li><li id="oauth2_cli_auth.code_grant.load_oidc_config">
             
             <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.code<wbr></wbr>_grant<wbr></wbr>.load<wbr></wbr>_oidc<wbr></wbr>_config</div>
@@ -402,7 +426,7 @@
             <div class="type">Function</div>
             <div class="kind">Function</div>
             <div class="privacy">PUBLIC</div>
-            <div class="summary">Open browser using webbrowser module and show message about URL open :param print_open_browser_instruction: Callback to print the instructions to open the browser. Set to None in order to supress the output...</div>
+            <div class="summary">Open browser using webbrowser module and show message about URL open</div>
           </li><li id="oauth2_cli_auth.code_grant.get_auth_url">
             
             <div class="fullName">oauth2<wbr></wbr>_cli<wbr></wbr>_auth<wbr></wbr>.code<wbr></wbr>_grant<wbr></wbr>.get<wbr></wbr>_auth<wbr></wbr>_url</div>
