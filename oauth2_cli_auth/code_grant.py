@@ -18,15 +18,27 @@ class OAuth2ClientInfo:
     """
     authorization_url: str
     """Authorization URL to redirect the user to"""
+
     token_url: str
     """Token URL for fetching the access token"""
+
     client_id: str
     """Id of the client to request for"""
+
     scopes: list[str]
     """List of scopes to request"""
 
     @staticmethod
-    def from_oidc_endpoint(oidc_config_endpoint: str, client_id: str, scopes: list[str]):
+    def from_oidc_endpoint(oidc_config_endpoint: str, client_id: str, scopes: list[str]) -> "OAuth2ClientInfo":
+        """
+        Create client information object from well known endpoint in format as specified in
+        https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
+
+        :param oidc_config_endpoint: Endpoint to load
+        :param client_id: Client ID to use
+        :param scopes: Scopes to add to OAuth2 authorization requests
+        :return: OAuth2ClientInfo containing parsed information from endpoint
+        """
         config = load_oidc_config(oidc_config_endpoint)
         return OAuth2ClientInfo(
             authorization_url=config.get("authorization_endpoint"),
@@ -49,6 +61,7 @@ def load_oidc_config(odic_well_known_endpoint: str) -> dict:
 def open_browser(url: str, print_open_browser_instruction: Callable[[str], None] | None = print) -> None:
     """
     Open browser using webbrowser module and show message about URL open
+
     :param print_open_browser_instruction: Callback to print the instructions to open the browser. Set to None in order to supress the output.
     :param url: URL to open and display
     :return: None
