@@ -26,7 +26,7 @@ include = [
     "LICENSE"
 ]
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/timo-reymann/python-oauth2-cli-auth/issues"
