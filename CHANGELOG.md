@@ -1,3 +1,10 @@
+## [1.5.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.4.0...1.5.0) (2024-08-09)
+
+
+### Features
+
+* Allow python 3.9+ ([ce91e0b](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/ce91e0bef9f92491094907351bdca2242a237a65))
+
 ## [1.4.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.3.0...1.4.0) (2024-05-19)
 
 
