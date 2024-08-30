@@ -4,6 +4,7 @@ oauth2-cli-auth
 [![CircleCI](https://circleci.com/gh/timo-reymann/python-oauth2-cli-auth.svg?style=shield)](https://app.circleci.com/pipelines/github/timo-reymann/python-oauth2-cli-auth)
 [![GitHub Release](https://img.shields.io/github/v/tag/timo-reymann/python-oauth2-cli-auth?label=version)](https://github.com/timo-reymann/python-oauth2-cli-auth/releases)
 [![PyPI version](https://badge.fury.io/py/oauth2-cli-auth.svg)](https://pypi.org/project/oauth2-cli-auth)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/oauth2-cli-auth)
 [![codecov](https://codecov.io/gh/timo-reymann/python-oauth2-cli-auth/graph/badge.svg?token=zxY1pKcBaj)](https://codecov.io/gh/timo-reymann/python-oauth2-cli-auth)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=timo-reymann_python-oauth2-cli-auth&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=timo-reymann_python-oauth2-cli-auth)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=timo-reymann_python-oauth2-cli-auth&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=timo-reymann_python-oauth2-cli-auth)
