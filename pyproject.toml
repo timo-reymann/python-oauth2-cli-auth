@@ -37,7 +37,7 @@ url = "https://test.pypi.org/legacy/"
 priority="explicit"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^7.4.3"
+pytest = "^8.0.0"
 coverage = "^7.3.2"
 setuptools = "^75.0.0"
 pydoctor = "^24.0.0"
