@@ -40,7 +40,7 @@ priority="explicit"
 pytest = "^7.4.3"
 coverage = "^7.3.2"
 setuptools = "^75.0.0"
-pydoctor = "^23.9.1"
+pydoctor = "^24.0.0"
 
 [tool.coverage.run]
 omit = [".*", "*/site-packages/*", "*/*_test.py"]
