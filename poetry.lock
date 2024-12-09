@@ -494,13 +494,13 @@ testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
 name = "pydoctor"
-version = "24.11.0"
+version = "24.11.1"
 description = "API doc generator."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pydoctor-24.11.0-py3-none-any.whl", hash = "sha256:df3f94b850cc0b223e6c090ff44a44a728b4197b517cc9b1000f8d75281e7e96"},
-    {file = "pydoctor-24.11.0.tar.gz", hash = "sha256:375eabfa81b1011081ca30b3e3b69f08a5c69ffdc910c028707e7813cec2bb38"},
+    {file = "pydoctor-24.11.1-py3-none-any.whl", hash = "sha256:eb180c1a784380bd5fcfa2f3b190608eb8be6d8a3647f8e382ec78a53b5248d5"},
+    {file = "pydoctor-24.11.1.tar.gz", hash = "sha256:5e02aba4d15d3f7c4e1509aa9e2bf0abf1b5912721ac434b0cec0ec7909f4f83"},
 ]
 
 [package.dependencies]
