@@ -1,3 +1,10 @@
+## [1.6.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.5.0...1.6.0) (2025-03-20)
+
+
+### Features
+
+* Expose __version__ attribute ([390d880](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/390d8800d4819af200dfd8e637fcdd1953e13313))
+
 ## [1.5.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.4.0...1.5.0) (2024-08-09)
 
 
