@@ -82,7 +82,7 @@ def get_auth_url(client_info: OAuth2ClientInfo, redirect_uri: str) -> str:
     return (f"{client_info.authorization_url}"
             f"?client_id={client_info.client_id}"
             f"&redirect_uri={redirect_uri}"
-            f"&scope={' '.join(client_info.scopes)}"
+            f"&scope={'+'.join(client_info.scopes)}"
             f"&response_type=code")
 
 
