@@ -15,7 +15,7 @@ client_info = OAuth2ClientInfo(
 def test_get_auth_url():
     auth_url = get_auth_url(client_info, "http://localhost:123")
     assert auth_url == (
-        'https://auth.com/oauth/authorize?client_id=dummy&redirect_uri=http://localhost:123&scope=openid '
+        'https://auth.com/oauth/authorize?client_id=dummy&redirect_uri=http://localhost:123&scope=openid+'
         'profile&response_type=code'
     )
 
