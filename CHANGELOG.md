@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.6.0...1.6.1) (2025-03-27)
+
+
+### Bug Fixes
+
+* URL encode spaces in callback scope parameter ([aa5db4c](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/aa5db4c279de5093c9451f29680b44ad30fb7391))
+
 ## [1.6.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.5.0...1.6.0) (2025-03-20)
 
 
