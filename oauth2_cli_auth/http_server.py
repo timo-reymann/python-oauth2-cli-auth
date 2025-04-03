@@ -234,9 +234,9 @@ class OAuthCallbackHttpServer(HTTPServer):
     def __init__(self, port):
         super().__init__(("", port), OAuthRedirectHandler)
 
-        self._code: str | None = None
+        self._code: Optional[str] = None
 
-    def get_code(self) -> str | None:
+    def get_code(self) -> Optional[str]:
         """
         This method should only be called after the request was done and might be None when no token is given.
 
