@@ -7,6 +7,7 @@ import urllib.request
 import webbrowser
 from collections.abc import Callable
 from dataclasses import dataclass
+from typing import Optional
 
 from oauth2_cli_auth._urllib_util import _load_json
 
@@ -58,7 +59,7 @@ def load_oidc_config(odic_well_known_endpoint: str) -> dict:
     return config
 
 
-def open_browser(url: str, print_open_browser_instruction: Callable[[str], None] | None = print) -> None:
+def open_browser(url: str, print_open_browser_instruction: Optional[Callable[[str], None]] = print) -> None:
     """
     Open browser using webbrowser module and show message about URL open
 
