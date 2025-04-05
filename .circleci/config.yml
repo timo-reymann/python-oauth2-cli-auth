@@ -30,7 +30,11 @@ jobs:
                 --password "$TWINE_PASSWORD"
 
   test:
-    executor: python
+    parameters:
+      python-version:
+        type: string
+    docker:
+      - image: cimg/python:<<parameters.python-version>>
     steps:
       - checkout
       - python/install-packages:
@@ -71,7 +75,15 @@ jobs:
 workflows:
   continuous:
     jobs:
-      - test
+      - test:
+          matrix:
+            parameters:
+              python-version:
+                - "3.9"
+                - "3.10"
+                - "3.11"
+                - "3.12"
+                - "3.13"
       - build-gh-pages:
           filters:
             branches:
