@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.6.1...1.6.2) (2025-04-05)
+
+
+### Bug Fixes
+
+* restore python 3.9 compatibility ([2af5adb](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/2af5adb2c2460b242af1616ebc2faf295007ab57))
+
 ## [1.6.1](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.6.0...1.6.1) (2025-03-27)
 
 
