@@ -495,13 +495,13 @@ testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
 name = "pydoctor"
-version = "24.11.2"
+version = "25.4.0"
 description = "API doc generator."
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "pydoctor-24.11.2-py3-none-any.whl", hash = "sha256:69004e7b4a2b4db6425f1a46869adf7ebcd7c4fd0340515538134a4df181ab82"},
-    {file = "pydoctor-24.11.2.tar.gz", hash = "sha256:d52c13caa17b870da1a245981c15cda88406eb73a863dbe23db3fbc43e3b3fc3"},
+    {file = "pydoctor-25.4.0-py3-none-any.whl", hash = "sha256:9fb5bff6fb28e4071080f2580812133e374289dba49798f3eaeb7f8d68a043cb"},
+    {file = "pydoctor-25.4.0.tar.gz", hash = "sha256:c460413a31d83103481fe61479cf6da896694c9b6258243154abd01e4eee14bf"},
 ]
 
 [package.dependencies]
@@ -509,16 +509,16 @@ attrs = "*"
 CacheControl = {version = ">=0.12.14", extras = ["filecache"]}
 configargparse = "*"
 docutils = ">=0.17"
-lunr = ">=0.6.2,<0.8.0"
+lunr = ">=0.6.2,<0.9.0"
 platformdirs = "*"
 requests = "*"
 toml = {version = "*", markers = "python_version < \"3.11\""}
 Twisted = "*"
-urllib3 = ">=2.0"
+urllib3 = "*"
 
 [package.extras]
 docs = ["Sphinx", "sphinx-argparse", "sphinx_rtd_theme", "sphinxcontrib-spelling"]
-mypy = ["hypothesis", "mypy (>=0.902)", "mypy-zope", "pytest (>=6.0.0)", "sphinx (>=3.4.0)", "twisted", "types-docutils", "types-requests", "types-toml", "typing-extensions"]
+mypy = ["hypothesis", "mypy (>=1.15.0)", "mypy-zope", "pytest (>=6.0.0)", "sphinx (>=3.4.0)", "twisted", "types-docutils", "types-requests", "types-toml", "typing-extensions"]
 rst = ["docutils"]
 test = ["Sphinx", "bs4", "coverage", "cython-test-exception-raiser", "docutils (>=0.18.1)", "hypothesis", "pytest", "pytest-subtests", "pytest-xdist", "setuptools"]
 
@@ -758,4 +758,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9"
-content-hash = "80d066cb1964aa1fbb20bb80f06b15a9bee7272b14a85f735437909e3d4af1d1"
+content-hash = "ac634e20e9784478123a1d90d4d793e86575b61fba25559d1f8a2c1fc54c1fac"
