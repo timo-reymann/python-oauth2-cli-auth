@@ -7,6 +7,7 @@ from oauth2_cli_auth import get_access_token_with_browser_open, OAuth2ClientInfo
 
 client_info = OAuth2ClientInfo(
     client_id="dummy",
+    client_secret="dummy",
     authorization_url="http://auth.com/oauth/authorize",
     token_url="http://auth.com/oauth/token",
     scopes=["openid", "profile"]

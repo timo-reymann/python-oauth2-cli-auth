@@ -6,6 +6,7 @@ from oauth2_cli_auth import OAuth2ClientInfo, get_auth_url, exchange_code_for_ac
 
 client_info = OAuth2ClientInfo(
     client_id="dummy",
+    client_secret="dummy",
     authorization_url="https://auth.com/oauth/authorize",
     token_url="https://auth.com/oauth/token",
     scopes=["openid", "profile"]

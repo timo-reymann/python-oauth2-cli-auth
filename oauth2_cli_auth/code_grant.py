@@ -26,11 +26,14 @@ class OAuth2ClientInfo:
     client_id: str
     """Id of the client to request for"""
 
+    client_secret: str
+    """Secret of the client to request for"""
+
     scopes: list[str]
     """List of scopes to request"""
 
     @staticmethod
-    def from_oidc_endpoint(oidc_config_endpoint: str, client_id: str, scopes: list[str]) -> "OAuth2ClientInfo":
+    def from_oidc_endpoint(oidc_config_endpoint: str, client_id: str, client_secret: str = "", scopes: list[str] = []) -> "OAuth2ClientInfo":
         """
         Create client information object from well known endpoint in format as specified in
         https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
@@ -45,6 +48,7 @@ class OAuth2ClientInfo:
             authorization_url=config.get("authorization_endpoint"),
             token_url=config.get("token_endpoint"),
             client_id=client_id,
+            client_secret=client_secret,
             scopes=scopes,
         )
 
@@ -102,7 +106,7 @@ def exchange_code_for_response(
     """
     headers = {
         "Content-Type": "application/x-www-form-urlencoded",
-        "Authorization": "Basic " + base64.b64encode(f"{client_info.client_id}:".encode()).decode(),
+        "Authorization": "Basic " + base64.b64encode(f"{client_info.client_id}:{client_info.client_secret}".encode()).decode(),
     }
 
     data = {
@@ -117,6 +121,32 @@ def exchange_code_for_response(
 
     return json_response
 
+def refresh_access_token(
+        client_info: OAuth2ClientInfo,
+        refresh_token: str,
+) -> dict:
+    """
+    Refresh an access token using the endpoints from client info
+
+    :param client_info: Info about oauth2 client
+    :param refresh_token: Refresh token to use
+    :return: Response from OAuth2 endpoint
+    """
+    headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": "Basic " + base64.b64encode(f"{client_info.client_id}:{client_info.client_secret}".encode()).decode(),
+    }
+
+    data = {
+        "refresh_token": refresh_token,
+        "grant_type": "refresh_token",
+    }
+    encoded_data = urllib.parse.urlencode(data).encode('utf-8')
+
+    request = urllib.request.Request(client_info.token_url, data=encoded_data, headers=headers)
+    json_response = _load_json(request)
+
+    return json_response
 
 def exchange_code_for_access_token(
         client_info: OAuth2ClientInfo,
