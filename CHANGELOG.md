@@ -1,3 +1,19 @@
+## [2.0.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.6.2...2.0.0) (2025-06-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop support for python 3.9
+
+### Features
+
+* Added client_secret support and refresh token functionality ([#90](https://github.com/timo-reymann/python-oauth2-cli-auth/issues/90)) ([13b34ae](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/13b34aea4fe79c3eecbe8d97f6f9621bfed84cca))
+
+
+### Bug Fixes
+
+* Drop support for python 3.9 ([ee196e0](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/ee196e0e1c7319081d27b90dc91866129797d998))
+
 ## [1.6.2](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.6.1...1.6.2) (2025-04-05)
 
 
