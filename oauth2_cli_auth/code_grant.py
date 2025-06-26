@@ -106,7 +106,7 @@ def exchange_code_for_response(
     """
     headers = {
         "Content-Type": "application/x-www-form-urlencoded",
-        "Authorization": "Basic " + base64.b64encode(f"{client_info.client_id}:{client_info.client_secret}".encode()).decode(),
+        "Authorization": "Basic " + base64.b64encode(f"{client_info.client_id}:{client_info.client_secret if client_info.client_secret is not None else ''}".encode()).decode(),
     }
 
     data = {
