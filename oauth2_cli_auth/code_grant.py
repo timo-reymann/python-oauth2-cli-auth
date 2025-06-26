@@ -26,7 +26,7 @@ class OAuth2ClientInfo:
     client_id: str
     """Id of the client to request for"""
 
-    client_secret: str
+    client_secret: str | None
     """Secret of the client to request for"""
 
     scopes: list[str]
