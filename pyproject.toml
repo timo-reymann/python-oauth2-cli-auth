@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "oauth2-cli-auth"
-version = "1.6.3"
+version = "1.6.2"
 description = "Authenticate against OAuth2 Provider in Python CLIs"
 authors = ["Timo Reymann <mail@timo-reymann.de>"]
 license = "MIT"

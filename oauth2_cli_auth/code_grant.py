@@ -33,7 +33,7 @@ class OAuth2ClientInfo:
     """List of scopes to request"""
 
     @staticmethod
-def from_oidc_endpoint(oidc_config_endpoint: str, client_id: str, scopes: list[str] = [], client_secret: str | None = None) -> "OAuth2ClientInfo":
+    def from_oidc_endpoint(oidc_config_endpoint: str, client_id: str, scopes: list[str] = [], client_secret: str | None = None) -> "OAuth2ClientInfo":
         """
         Create client information object from well known endpoint in format as specified in
         https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata
