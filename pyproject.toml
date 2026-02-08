@@ -39,7 +39,7 @@ priority="explicit"
 [tool.poetry.group.dev.dependencies]
 pytest = "^9.0.0"
 coverage = "^7.3.2"
-setuptools = "^81.0.0"
+setuptools = "^82.0.0"
 pydoctor = "^24.0.0"
 
 [tool.coverage.run]
