@@ -1,3 +1,19 @@
+## [3.0.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/2.0.0...3.0.0) (2026-11-05)
+
+### ⚠ BREAKING CHANGES
+
+* OAuthCallbackHttpServer rejects callbacks without the
+matching state. Users of the low-level API must pass server.state to
+get_auth_url. The server now binds to 127.0.0.1 instead of all interfaces.
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+
+### Bug Fixes
+
+* Validate OAuth state, use PKCE and bind callback server to loopback ([4a03d8d](https://github.com/timo-reymann/python-oauth2-cli-auth/commit/4a03d8de27d1ecd29362e216c26e276287491691))
+
 ## [2.0.0](https://github.com/timo-reymann/python-oauth2-cli-auth/compare/1.6.2...2.0.0) (2025-06-26)
 
 
