@@ -1,6 +1,9 @@
 """
 Local HTTP server logic
 """
+import hmac
+import secrets
+import time
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from string import Template
 from typing import Optional
@@ -198,6 +201,15 @@ class OAuthRedirectHandler(BaseHTTPRequestHandler):
         )
         self._serve_html(rendered_callback_page)
 
+    def _state_matches(self, params: dict) -> bool:
+        """
+        Check the state parameter of the callback against the state of the running flow (constant time)
+        """
+        received = params.get("state", [])
+        if len(received) != 1:
+            return False
+        return hmac.compare_digest(received[0].encode("utf-8"), self.server.state.encode("utf-8"))
+
     # noinspection PyPep8Naming
     def do_GET(self) -> None:
         """
@@ -207,7 +219,8 @@ class OAuthRedirectHandler(BaseHTTPRequestHandler):
 
         has_error = ("code" not in params
                      or len(params['code']) != 1
-                     or params['code'][0].strip() == "")
+                     or params['code'][0].strip() == ""
+                     or not self._state_matches(params))
 
         if has_error:
             self.send_response(400)
@@ -231,10 +244,18 @@ class OAuthCallbackHttpServer(HTTPServer):
     Simplistic HTTP Server to provide local callback URL for oauth2 provider
     """
 
-    def __init__(self, port):
-        super().__init__(("", port), OAuthRedirectHandler)
+    def __init__(self, port, host: str = "127.0.0.1", state: Optional[str] = None):
+        """
+        :param port: Port to listen on
+        :param host: Address to bind to. Defaults to loopback so the callback is not reachable from the network.
+        :param state: Value for the OAuth2 state parameter. A random one is generated if omitted.
+                      Callbacks not carrying exactly this state are rejected.
+        """
+        super().__init__((host, port), OAuthRedirectHandler)
 
         self._code: Optional[str] = None
+        self.state: str = state if state is not None else secrets.token_urlsafe(32)
+        """State that has to be sent with the authorization request and is expected on the callback"""
 
     def get_code(self) -> Optional[str]:
         """
@@ -262,12 +283,15 @@ class OAuthCallbackHttpServer(HTTPServer):
         :param timeout_per_attempt: Timeout for each attempt to be successful
         :return: Code from callback page or None if the callback page is not called successfully
         """
-        for _ in range(0, attempts):
+        deadline = time.monotonic() + attempts * timeout_per_attempt
+        while True:
+            remaining = int(deadline - time.monotonic())
+            if remaining < 1:
+                return None
             try:
-                _method_with_timeout(self.handle_request, timeout_seconds=timeout_per_attempt)
+                _method_with_timeout(self.handle_request, timeout_seconds=min(timeout_per_attempt, remaining))
             except TimeoutException:
                 continue
+            # requests without a valid code/state are rejected by the handler and do not end the wait
             if self.get_code() is not None:
                 return self.get_code()
-
-        return None

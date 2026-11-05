@@ -2,6 +2,8 @@
 Functionality to work with OAuth2 code grant
 """
 import base64
+import hashlib
+import secrets
 import urllib.parse
 import urllib.request
 import webbrowser
@@ -76,25 +78,47 @@ def open_browser(url: str, print_open_browser_instruction: Optional[Callable[[st
     webbrowser.open(url)
 
 
-def get_auth_url(client_info: OAuth2ClientInfo, redirect_uri: str) -> str:
+def generate_pkce_pair() -> tuple[str, str]:
+    """
+    Generate a PKCE (RFC 7636) code verifier and its S256 code challenge
+
+    :return: Tuple of (code_verifier, code_challenge)
+    """
+    verifier = secrets.token_urlsafe(64)
+    digest = hashlib.sha256(verifier.encode("ascii")).digest()
+    return verifier, base64.urlsafe_b64encode(digest).rstrip(b"=").decode("ascii")
+
+
+def get_auth_url(client_info: OAuth2ClientInfo, redirect_uri: str, state: Optional[str] = None,
+                 code_challenge: Optional[str] = None) -> str:
     """
     Build authorization url for browser
 
     :param client_info: Info about oauth2 client
     :param redirect_uri: Callback URL
+    :param state: Opaque value to protect the callback against forged requests. Providers echo it back on the redirect.
+    :param code_challenge: PKCE S256 code challenge, see generate_pkce_pair
     :return: Ready to use URL
     """
-    return (f"{client_info.authorization_url}"
-            f"?client_id={client_info.client_id}"
-            f"&redirect_uri={redirect_uri}"
-            f"&scope={'+'.join(client_info.scopes)}"
-            f"&response_type=code")
+    params = {
+        "client_id": client_info.client_id,
+        "redirect_uri": redirect_uri,
+        "scope": " ".join(client_info.scopes),
+        "response_type": "code",
+    }
+    if state is not None:
+        params["state"] = state
+    if code_challenge is not None:
+        params["code_challenge"] = code_challenge
+        params["code_challenge_method"] = "S256"
+    return f"{client_info.authorization_url}?{urllib.parse.urlencode(params)}"
 
 
 def exchange_code_for_response(
         client_info: OAuth2ClientInfo,
         redirect_uri: str,
         code: str,
+        code_verifier: Optional[str] = None,
 ) -> dict:
     """
     Exchange a code for an access token using the endpoints from client info and return the entire response
@@ -102,6 +126,7 @@ def exchange_code_for_response(
     :param client_info: Info about oauth2 client
     :param redirect_uri: Callback URL
     :param code: Code to redeem
+    :param code_verifier: PKCE code verifier matching the code challenge of the authorization request
     :return: Response from OAuth2 endpoint
     """
     headers = {
@@ -114,6 +139,8 @@ def exchange_code_for_response(
         "redirect_uri": redirect_uri,
         "grant_type": "authorization_code",
     }
+    if code_verifier is not None:
+        data["code_verifier"] = code_verifier
     encoded_data = urllib.parse.urlencode(data).encode('utf-8')
 
     request = urllib.request.Request(client_info.token_url, data=encoded_data, headers=headers)
@@ -152,7 +179,8 @@ def exchange_code_for_access_token(
         client_info: OAuth2ClientInfo,
         redirect_uri: str,
         code: str,
-        access_token_field: str = "access_token"
+        access_token_field: str = "access_token",
+        code_verifier: Optional[str] = None,
 ) -> str:
     """
     Exchange a code for an access token using the endpoints from client info
@@ -162,8 +190,9 @@ def exchange_code_for_access_token(
     :param code: Code to redeem
     :param access_token_field: Name of the field containing the access token to use. This might differ depending on
                                the provider you are using. For example for Auth0 you have to set this to id_token
+    :param code_verifier: PKCE code verifier matching the code challenge of the authorization request
     :return: Extracted access token from response
     """
-    json_response = exchange_code_for_response(client_info, redirect_uri, code)
+    json_response = exchange_code_for_response(client_info, redirect_uri, code, code_verifier)
 
     return json_response.get(access_token_field)

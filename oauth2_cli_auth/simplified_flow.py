@@ -3,6 +3,7 @@ Ready to use workflows
 """
 from oauth2_cli_auth import OAuthCallbackHttpServer, get_auth_url, exchange_code_for_access_token, OAuth2ClientInfo, \
     open_browser
+from oauth2_cli_auth.code_grant import generate_pkce_pair
 
 
 def get_access_token_with_browser_open(client_info: OAuth2ClientInfo, server_port: int = 8080) -> str:
@@ -19,9 +20,12 @@ def get_access_token_with_browser_open(client_info: OAuth2ClientInfo, server_por
     :return: Access Token
     """
     callback_server = OAuthCallbackHttpServer(server_port)
-    auth_url = get_auth_url(client_info, callback_server.callback_url)
+    code_verifier, code_challenge = generate_pkce_pair()
+    auth_url = get_auth_url(client_info, callback_server.callback_url, state=callback_server.state,
+                            code_challenge=code_challenge)
     open_browser(auth_url)
     code = callback_server.wait_for_code()
     if code is None:
         raise ValueError("No code could be obtained from browser callback page")
-    return exchange_code_for_access_token(client_info, callback_server.callback_url, code)
+    return exchange_code_for_access_token(client_info, callback_server.callback_url, code,
+                                           code_verifier=code_verifier)
