@@ -258,6 +258,16 @@
         
 
         
+            <div class="itemName"><code><a href="oauth2_cli_auth.code_grant.html#generate_pkce_pair" class="internal-link" title="oauth2_cli_auth.code_grant.generate_pkce_pair">generate<wbr></wbr>_pkce<wbr></wbr>_pair</a></code>
+            </div>
+        
+
+    </li><li class="">
+        
+        
+        
+
+        
             <div class="itemName"><code><a href="oauth2_cli_auth.code_grant.html#get_auth_url" class="internal-link" title="oauth2_cli_auth.code_grant.get_auth_url">get<wbr></wbr>_auth<wbr></wbr>_url</a></code>
             </div>
         
@@ -395,8 +405,8 @@
   </a>
   <div class="functionHeader">
     
-    @<a href="https://docs.python.org/3/library/functions.html#staticmethod" class="intersphinx-link">staticmethod</a><br />
-    <span class="py-keyword">def</span> <span class="py-defname">from_oidc_endpoint</span><span class="function-signature">(oidc_config_endpoint: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, client_id: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code>, scopes: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> = [], client_secret: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> = <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a>) -&gt; <code><a href="oauth2_cli_auth.code_grant.OAuth2ClientInfo.html" class="internal-link" title="oauth2_cli_auth.code_grant.OAuth2ClientInfo">OAuth2ClientInfo</a></code></span>:
+    @<a href="https://docs.python.org/3/builtins/functions.html#staticmethod" class="intersphinx-link">staticmethod</a><br />
+    <span class="py-keyword">def</span> <span class="py-defname">from_oidc_endpoint</span><span class="function-signature">(oidc_config_endpoint: <code><a href="https://docs.python.org/3/builtins/stdtypes.html#str" class="intersphinx-link">str</a></code>, client_id: <code><a href="https://docs.python.org/3/builtins/stdtypes.html#str" class="intersphinx-link">str</a></code>, scopes: <code><a href="https://docs.python.org/3/builtins/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/builtins/stdtypes.html#str" class="intersphinx-link">str</a>]</code> = [], client_secret: <code><a href="https://docs.python.org/3/builtins/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/builtins/constants.html#None" class="intersphinx-link">None</a></code> = <a href="https://docs.python.org/3/builtins/constants.html#None" class="intersphinx-link">None</a>) -&gt; <code><a href="oauth2_cli_auth.code_grant.OAuth2ClientInfo.html" class="internal-link" title="oauth2_cli_auth.code_grant.OAuth2ClientInfo">OAuth2ClientInfo</a></code></span>:
     
     <a class="headerLink" href="#from_oidc_endpoint" title="oauth2_cli_auth.code_grant.OAuth2ClientInfo.from_oidc_endpoint">
       
@@ -407,7 +417,7 @@
   <div class="docstring functionBody">
     
     <div><p>Create client information object from well known endpoint in format as specified in
-<a class="rst-external rst-reference" href="https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata" target="_top">https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata</a></p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">oidc<wbr></wbr>_config<wbr></wbr>_endpoint:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Endpoint to load</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">client<wbr></wbr>_id:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Client ID to use</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">scopes:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">Scopes to add to OAuth2 authorization requests</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">client<wbr></wbr>_secret:</span><code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="oauth2_cli_auth.code_grant.OAuth2ClientInfo.html" class="internal-link" title="oauth2_cli_auth.code_grant.OAuth2ClientInfo">OAuth2ClientInfo</a></code></td><td class="fieldArgDesc">OAuth2ClientInfo containing parsed information from endpoint</td></tr></table></div>
+<a class="rst-external rst-reference" href="https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata" target="_top">https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata</a></p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">oidc<wbr></wbr>_config<wbr></wbr>_endpoint:</span><code><a href="https://docs.python.org/3/builtins/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Endpoint to load</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">client<wbr></wbr>_id:</span><code><a href="https://docs.python.org/3/builtins/stdtypes.html#str" class="intersphinx-link">str</a></code></td><td class="fieldArgDesc">Client ID to use</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">scopes:</span><code><a href="https://docs.python.org/3/builtins/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/builtins/stdtypes.html#str" class="intersphinx-link">str</a>]</code></td><td class="fieldArgDesc">Scopes to add to OAuth2 authorization requests</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">client<wbr></wbr>_secret:</span><code><a href="https://docs.python.org/3/builtins/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/builtins/constants.html#None" class="intersphinx-link">None</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code><a href="oauth2_cli_auth.code_grant.OAuth2ClientInfo.html" class="internal-link" title="oauth2_cli_auth.code_grant.OAuth2ClientInfo">OAuth2ClientInfo</a></code></td><td class="fieldArgDesc">OAuth2ClientInfo containing parsed information from endpoint</td></tr></table></div>
   </div>
 </div><div class="baseclassvariable">
   
@@ -420,7 +430,7 @@
   </a>
   <div class="functionHeader">
     
-    <span class="py-defname">authorization_url</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <span class="py-defname">authorization_url</span>: <code><a href="https://docs.python.org/3/builtins/stdtypes.html#str" class="intersphinx-link">str</a></code> =
     
     <a class="headerLink" href="#authorization_url" title="oauth2_cli_auth.code_grant.OAuth2ClientInfo.authorization_url">
       
@@ -444,7 +454,7 @@
   </a>
   <div class="functionHeader">
     
-    <span class="py-defname">client_id</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <span class="py-defname">client_id</span>: <code><a href="https://docs.python.org/3/builtins/stdtypes.html#str" class="intersphinx-link">str</a></code> =
     
     <a class="headerLink" href="#client_id" title="oauth2_cli_auth.code_grant.OAuth2ClientInfo.client_id">
       
@@ -468,7 +478,7 @@
   </a>
   <div class="functionHeader">
     
-    <span class="py-defname">client_secret</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/library/constants.html#None" class="intersphinx-link">None</a></code> =
+    <span class="py-defname">client_secret</span>: <code><a href="https://docs.python.org/3/builtins/stdtypes.html#str" class="intersphinx-link">str</a> | <a href="https://docs.python.org/3/builtins/constants.html#None" class="intersphinx-link">None</a></code> =
     
     <a class="headerLink" href="#client_secret" title="oauth2_cli_auth.code_grant.OAuth2ClientInfo.client_secret">
       
@@ -492,7 +502,7 @@
   </a>
   <div class="functionHeader">
     
-    <span class="py-defname">scopes</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
+    <span class="py-defname">scopes</span>: <code><a href="https://docs.python.org/3/builtins/stdtypes.html#list" class="intersphinx-link">list</a>[<wbr></wbr><a href="https://docs.python.org/3/builtins/stdtypes.html#str" class="intersphinx-link">str</a>]</code> =
     
     <a class="headerLink" href="#scopes" title="oauth2_cli_auth.code_grant.OAuth2ClientInfo.scopes">
       
@@ -516,7 +526,7 @@
   </a>
   <div class="functionHeader">
     
-    <span class="py-defname">token_url</span>: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="intersphinx-link">str</a></code> =
+    <span class="py-defname">token_url</span>: <code><a href="https://docs.python.org/3/builtins/stdtypes.html#str" class="intersphinx-link">str</a></code> =
     
     <a class="headerLink" href="#token_url" title="oauth2_cli_auth.code_grant.OAuth2ClientInfo.token_url">
       
@@ -541,7 +551,7 @@
   <div class="container-fluid">
     <a href="index.html">API Documentation</a> for <a href="https://github.com/timo-reymann/python-oauth2-cli-auth" class="projecthome">oauth2_cli_auth</a>,
   generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
-    24.11.2 at 2025-09-22 17:41:58.
+    24.11.2 at 2026-11-05 07:57:13.
   </div>
 
   <!-- Search related scripts needs to be loaded at the end of HTML 
