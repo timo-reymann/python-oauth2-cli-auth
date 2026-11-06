@@ -9,10 +9,10 @@ orbs:
 executors:
   python:
     docker:
-      - image: cimg/python:3.14
+      - image: cimg/python:3.15
   node:
     docker:
-      - image: cimg/python:3.14-node
+      - image: cimg/python:3.15-node
 
 jobs:
   pip-publish:
